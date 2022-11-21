@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded",function(){
         "columns": [
             { "data": 'IdOfertas' },
             { "data": 'IdProducto' },
-            { "data": 'Cantidad' },
-            { "data": 'Fecha' },
             { "data": 'Porcentaje' },
+            { "data": 'FechaInicio' },
+            { "data": 'FechaFinal' },
             { "data": 'Estado' },
             { "data": 'options' }
         ],
@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded",function(){
          //VALIDACION
            var intidoferta=document.querySelector("#idoferta").value;
            var intidproducto=document.querySelector("#txtproducto").value;
-           var intcantidad=document.querySelector("#txtcantidad").value;
-           var strfecha=document.querySelector("#txtfecha").value;
            var intporcentaje=document.querySelector("#txtporcentaje").value;
+           var strfechaini=document.querySelector("#txtfechaini").value;
+           var strfechafin=document.querySelector("#txtfechafin").value;
            var intstatus=document.querySelector("#liststatus").value;
 
-        if(intcantidad =='' || strfecha =='' || intporcentaje ==''){
+        if(strfechaini =='' || strfechafin =='' || intporcentaje ==''){
             swal("Atención","Todos los campos son obligatorios.","error");
             return false;
         }
@@ -131,9 +131,9 @@ function fnteditofertas(){
                     var objdata=JSON.parse(request.responseText);
                     if(objdata.status){ 
                         document.querySelector("#idoferta").value=objdata.data.IdOfertas;              
-                        document.querySelector("#txtcantidad").value=objdata.data.Cantidad;
-                        document.querySelector("#txtfecha").value=objdata.data.Fecha;
                         document.querySelector("#txtporcentaje").value=objdata.data.Porcentaje;
+                        document.querySelector("#txtfechaini").value=objdata.data.FechaInicio;
+                        document.querySelector("#txtfechafin").value=objdata.data.FechaFinal;
                         document.querySelector("#txtproducto").value=objdata.data.IdProducto;            
                         $('#txtproducto').selectpicker('render');   
 

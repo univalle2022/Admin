@@ -1,12 +1,12 @@
 <?php 
 
-    const BASE_URL = "http://localhost/Sistema_new";
+    const BASE_URL = "http://localhost/Admin";
 
     //Zona horaria
 	date_default_timezone_set('UTC');
     
     const DB_HOST = "localhost";
-    const DB_NAME = "bdromjuli";
+    const DB_NAME = "ecommerce";
     const DB_USER = "root";
     const DB_PASSWORD = "";
     const DB_CHARSET = "utf8";

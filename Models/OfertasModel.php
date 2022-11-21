@@ -4,9 +4,9 @@
 
         public $intidofertas;
         public $intidproducto;
-        public $intcantidad;
-        public $strfecha;
         public $intporcentaje;
+        public $strfechaini;
+        public $strfechafin;
         public $intstatus;
 
         public function __construct() {
@@ -34,21 +34,21 @@
         }
 
 
-        public function insertofertas($idproducto, $cantidad, $fecha, $porcentaje, $estado){
+        public function insertofertas($idproducto,  $porcentaje, $fechaini_r, $fechafin_r, $estado){
             
             $return = 0;
             $this->intidproducto=$idproducto;
-            $this->intcantidad=$cantidad;
-            $this->strfecha=$fecha;
             $this->intporcentaje=$porcentaje;
+            $this->strfechaini=$fechaini_r;
+            $this->strfechafin=$fechafin_r;
             $this->intstatus=$estado;
 
 
             $sql= "SELECT * FROM tofertas WHERE IdProducto ='{$this->intidproducto}'";
             $requestinsert = $this->selectall($sql);
             if(empty($requestinsert)){
-                $queryinsert="INSERT INTO tofertas(IdProducto,Cantidad,Fecha,Porcentaje,Estado) VALUES (?,?,?,?,?)";
-                $arrdata = array($this->intidproducto,$this->intcantidad,$this->strfecha,$this->intporcentaje,$this->intstatus);
+                $queryinsert="INSERT INTO tofertas(IdProducto,Porcentaje,FechaInicio,FechaFinal,Estado) VALUES (?,?,?,?,?)";
+                $arrdata = array($this->intidproducto,$this->intporcentaje,$this->strfechaini,$this->strfechafin,$this->intstatus);
                 $requestinsert= $this->insert($queryinsert,$arrdata);
                 $return = $requestinsert;
             }else{
@@ -58,21 +58,21 @@
 
         }
     
-        public function updateofertas($idofertas, $producto, $cantidad, $fecha, $porcentaje, $status){
+        public function updateofertas($idofertas, $producto,  $porcentaje, $fechaini_r, $fechafin_r, $status){
             
             $this->intidofertas=$idofertas;
             $this->intidproducto=$producto;
-            $this->intcantidad=$cantidad;
-            $this->strfecha=$fecha;
             $this->intporcentaje=$porcentaje;
+            $this->strfechaini=$fechaini_r;
+            $this->strfechafin=$fechafin_r;
             $this->intstatus=$status;
 
             $sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOfertas != $this->intidofertas";
             $requestupdate = $this->selectall($sql);
             
             if(empty($requestupdate)){
-                $queryupdate="UPDATE tofertas SET IdProducto=?,Cantidad=?,Fecha=?,Porcentaje=?,Estado=? WHERE IdOfertas=$this->intidofertas";
-                $arrdata = array($this->intidproducto,$this->intcantidad,$this->strfecha,$this->intporcentaje,$this->intstatus);
+                $queryupdate="UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOfertas=$this->intidofertas";
+                $arrdata = array($this->intidproducto,$this->intporcentaje,$this->strfechaini,$this->strfechafin,$this->intstatus);
                 $requestupdate= $this->update($queryupdate,$arrdata);
                 $return=$requestupdate;
             }else{
