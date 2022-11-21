@@ -1,6 +1,10 @@
 <?php 
 
+<<<<<<< HEAD
     const BASE_URL = "http://localhost/Admin";
+=======
+    const BASE_URL = "http://localhost/Ecommerce";
+>>>>>>> f959fdf7a1792e4d5dcb431813aec81e2607d6e6
 
     //Zona horaria
 	date_default_timezone_set('UTC');
@@ -8,7 +12,7 @@
     const DB_HOST = "localhost";
     const DB_NAME = "ecommerce";
     const DB_USER = "root";
-    const DB_PASSWORD = "";
+    const DB_PASSWORD = "root";
     const DB_CHARSET = "utf8";
 
     const NOMBRE_REMITENTE = "Tienda de Ropa Romeo y Julieta";
