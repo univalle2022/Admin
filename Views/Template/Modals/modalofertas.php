@@ -32,7 +32,7 @@
             </div>
             <div class="form-group col-md-6">
               <label class="control-label">Fecha Final</label>
-              <input type="number" class="form-control" id="txtfechafin" name="txtfechafin" min="<?php echo date("Y-m-d");?>" >
+              <input type="date" class="form-control" id="txtfechafin" name="txtfechafin" min="<?php echo date("Y-m-d");?>" >
             </div>
           </div>
           <div class="form-row">
