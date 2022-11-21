@@ -21,18 +21,18 @@
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label class="control-label">Cantidad Limite</label>
-              <input class="form-control" id="txtcantidad" name="txtcantidad" pattern="{2,20}" type="number" placeholder="Cantidad limite de oferta" required="">
+              <label class="control-label">Porcentaje</label>
+              <input type="number" class="form-control" id="txtporcentaje" name="txtporcentaje" minlength="8" maxlength="20" pattern="{10,80}" placeholder="Porcentaje de oferta">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label class="control-label">Fecha</label>
-              <input type="date" class="form-control" id="txtfecha" name="txtfecha" minlength="8" maxlength="50" min="<?php echo date("Y-m-d");?>" placeholder="Fecha">
+              <label class="control-label">Fecha Inicio</label>
+              <input type="date" class="form-control" id="txtfechaini" name="txtfechaini" value="<?php echo date("Y-m-d");?>" readonly>
             </div>
             <div class="form-group col-md-6">
-              <label class="control-label">Porcentaje</label>
-              <input type="number" class="form-control" id="txtporcentaje" name="txtporcentaje" minlength="8" maxlength="20" pattern="{10,80}" placeholder="Porcentaje de oferta">
+              <label class="control-label">Fecha Final</label>
+              <input type="number" class="form-control" id="txtfechafin" name="txtfechafin" min="<?php echo date("Y-m-d");?>" >
             </div>
           </div>
           <div class="form-row">
@@ -44,6 +44,7 @@
                 <option value="2">Inactivo</option>
               </select>
             </div>
+            
           </div>
           <div class="tile-footer">
             <button id="btnactionform" class="btn btn-primary" type="submit">

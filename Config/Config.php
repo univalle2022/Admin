@@ -1,6 +1,10 @@
 <?php 
 
+<<<<<<< HEAD
+    const BASE_URL = "http://localhost/Admin";
+=======
     const BASE_URL = "http://localhost/Ecommerce";
+>>>>>>> f959fdf7a1792e4d5dcb431813aec81e2607d6e6
 
     //Zona horaria
 	date_default_timezone_set('UTC');

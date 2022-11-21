@@ -1,68 +1,60 @@
 <?php 
-  headerprincipal($data);
-
+  headeradmin($data);
+  getmodal('modalofertas',$data);
 ?>
+   
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i> <?= $data['page_title']?>
+            <button class="btn btn-primary btn-sm" type="button" onclick="openmodal()" style="margin-left: 20px;" >Nuevo</button>
+          </h1>
+      
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="#"> <?= $data['page_title']?></a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">Ofertas</div>
+            
+          </div>
+        </div>
+      </div>
 
- <main class="page pricing-table-page">
-        <section class="clean-block clean-pricing dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h2 class="text-info">Ofertas y descuentos</h2>
-             </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-5 col-lg-4">
-                        <div class="clean-pricing-item">
-                            <div class="heading">
-                                <h3>OFERTA</h3>
-                            </div>
-                            <p>2X1 para prendas para hombres 
-                                (solo chaquetas)
-                            </p>
-                            <div class="features">
-                                <h4><span class="feature">Valido hasta:&nbsp;</span><span>01/10/2022</span></h4>
-                                <h4><span class="feature">Descuento:&nbsp;</span><span>50%</span></h4>
-                            </div>
-                            <div class="price">
-                                <h4>2x1</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-lg-4">
-                        <div class="clean-pricing-item">
-                            <div class="heading">
-                                <h3>DESCUENTO</h3>
-                            </div>
-                            <p>50% de descuento para prendas juveniles</p>
-                            <div class="features">
-                                <h4><span class="feature">Valido hasta:&nbsp;</span><span>01/10/2022</span></h4>
-                                <h4><span class="feature">Descuento:&nbsp;</span><span>50%</span></h4>
-                            </div>
-                            <div class="price">
-                                <h4>-50%</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-lg-4">
-                        <div class="clean-pricing-item">
-                            <div class="heading">
-                                <h3>DESCUENTO</h3>
-                            </div>
-                            <p>20% de descuento para prendas de calzado</p>
-                            <div class="features">
-                                <h4><span class="feature">Valido hasta:&nbsp;</span><span>01/10/2022</span></h4>
-                                <h4><span class="feature">Descuento:&nbsp;</span><span>20%</span></h4>
-                            </div>
-                            <div class="price">
-                                <h4>-20%</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="tableofertas">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>IdProducto</th>
+                      <th>Porcentaje</th>
+                      <th>Fecha Inicio</th>
+                      <th>Fecha Final</th>
+                      <th>Estatus</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
             </div>
-        </section>
-    </main>
-    
-<?php 
-  footerprincipal($data);
+          </div>
+        </div>
+      </div>
 
+    </main>
+
+<?php 
+  footeradmin($data);
 ?>
+   
