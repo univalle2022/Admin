@@ -54,7 +54,7 @@
             <li><a class="treeview-item" href="<?=base_url()?>/contratos"><i class="icon fa fa-circle-o"></i>Contratos</a></li>
             <?php }?>
             <?php if (!empty($_SESSION['permisos'][12]['r'])) {?>
-            <li><a class="treeview-item" href="<?=base_url()?>/descuentos"><i class="icon fa fa-circle-o"></i>Descuentos</a></li>
+            <li><a class="treeview-item" href="<?=base_url()?>/ofertas"><i class="icon fa fa-circle-o"></i>Ofertas</a></li>
             <?php }?>
           </ul>
         </li>

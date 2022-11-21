@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded",function(){
             "dataSrc":""
         },
         "columns": [
-            { "data": 'IdOfertas' },
+            { "data": 'IdOferta' },
             { "data": 'IdProducto' },
-            { "data": 'Cantidad' },
-            { "data": 'Fecha' },
             { "data": 'Porcentaje' },
+            { "data": 'FechaInicio' },
+            { "data": 'FechaFinal' },
             { "data": 'Estado' },
             { "data": 'options' }
         ],
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded",function(){
         "bDestroy":true,
         "iDisplayLength":10,
         "order":[[0,"desc"]]
-    
     });
 
     var formofertas= document.querySelector("#formofertas");
