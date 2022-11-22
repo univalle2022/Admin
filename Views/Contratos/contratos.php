@@ -34,11 +34,14 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Nombre</th>
+                      <th>Usuario</th>
+                      <th>Cliente</th>
                       <th>Descripcion</th>
+                      <th>Archivo</th>
                       <th>Tamaño</th>
-                      <th>Enlace</th>
-                      <th>fecha</th>
+                      <th>Ubicacion</th>
+                      <th>Fecha</th>
+                      <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>

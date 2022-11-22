@@ -129,11 +129,11 @@ function fnteditofertas(){
                     //console.log(request.responseText);
                     var objdata=JSON.parse(request.responseText);
                     if(objdata.status){ 
-                        document.querySelector("#idoferta").value=objdata.data.IdOfertas;              
+                        document.querySelector("#idoferta").value=objdata.data.IdOferta;              
+                        document.querySelector("#txtproducto").value=objdata.data.IdProducto;            
                         document.querySelector("#txtporcentaje").value=objdata.data.Porcentaje;
                         document.querySelector("#txtfechaini").value=objdata.data.FechaInicio;
                         document.querySelector("#txtfechafin").value=objdata.data.FechaFinal;
-                        document.querySelector("#txtproducto").value=objdata.data.IdProducto;            
                         $('#txtproducto').selectpicker('render');   
 
                         if(objdata.data.Estado == 1){

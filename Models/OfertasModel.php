@@ -15,14 +15,14 @@
         }
         //YO
         public function selectofertas(){
-            $sql= "SELECT * FROM tofertas ";
+            $sql= "SELECT * FROM tofertas where Estado != 0 ";
             $request=$this->selectall($sql);
             return $request;
         }
 
         public function selectoferta(int $idoferta){
             $this->intidoferta= $idoferta;
-            $sql="SELECT * FROM tofertas WHERE IdOfertas = $this->intidoferta";
+            $sql="SELECT * FROM tofertas WHERE IdOferta = $this->intidoferta";
             $request=$this->select($sql);
             return $request;
         }
@@ -67,17 +67,19 @@
             $this->strfechafin=$fechafin_r;
             $this->intstatus=$status;
 
-            $sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOfertas != $this->intidofertas";
+            /*$sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOferta != $this->intidofertas";
             $requestupdate = $this->selectall($sql);
             
-            if(empty($requestupdate)){
-                $queryupdate="UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOfertas=$this->intidofertas";
+            if(!empty($requestupdate)){
+                
+            }else{
+                $return=-1;
+            }*/
+
+            $queryupdate="UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOferta=$this->intidofertas";
                 $arrdata = array($this->intidproducto,$this->intporcentaje,$this->strfechaini,$this->strfechafin,$this->intstatus);
                 $requestupdate= $this->update($queryupdate,$arrdata);
                 $return=$requestupdate;
-            }else{
-                $return=-1;
-            }
             
             return $return;
 
@@ -87,7 +89,7 @@
             
             $this->intidofertas=$idofertas_r;
     
-                $querydelete="UPDATE tofertas SET Estado=? WHERE IdOfertas  = $this->intidofertas";
+                $querydelete="UPDATE tofertas SET Estado=? WHERE IdOferta  = $this->intidofertas";
                 $arrdata = array(0);
                 $requestdelete= $this->update($querydelete,$arrdata);
 

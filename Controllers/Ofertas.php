@@ -10,7 +10,7 @@
         }
         public function ofertas(){
 
-            $data['page_id'] = 3;
+            $data['page_id'] = 5;
             $data['page_tag'] = "Ofertas";
             $data['page_title']= "Pagina Ofertas";
             $data['page_name'] = "Ofertas";
@@ -19,25 +19,25 @@
             $this->views->getview($this,"ofertas",$data);
         }
         public function getofertas()
-        {
-            $arrdata = $this->model->selectofertas();
-            for ($i = 0; $i < count($arrdata); $i++) {
-                if ($arrdata[$i]['Estado'] == 1) {
-                    $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
-                } else {
-                    $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
-                }
-                $arrdata[$i]['options'] = '<div class="text-center">
-
-                    <button class="btn btn-primary btn-sm btneditstyle btneditofertas" rl="' . $arrdata[$i]['IdOfertas'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>
-                    <button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOfertas'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>
-                    <script type="text/javascript"> fnteditofertas();fntdelofertas();</script>
-                    </div>';
-
+    {
+        $arrdata = $this->model->selectofertas();
+        for ($i = 0; $i < count($arrdata); $i++) {
+            if ($arrdata[$i]['Estado'] == 1) {
+                $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
+            } else {
+                $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
             }
-            echo json_encode($arrdata, JSON_UNESCAPED_UNICODE);
-            die();
+            $arrdata[$i]['options'] = '<div class="text-center">
+
+                <button class="btn btn-primary btn-sm btneditstyle btneditofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>
+                <button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>
+                <script type="text/javascript"> fnteditofertas();fntdelofertas();</script>
+                </div>';
+
         }
+        echo json_encode($arrdata, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 
         public function setofertas()
         {
