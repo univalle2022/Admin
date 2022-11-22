@@ -22,7 +22,7 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="<?= base_url(); ?>">Inicio</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/nosotros">Nosotros</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/ofertas">Ofertas</a></li>
+                    <!-- <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/ofertas">Ofertas</a></li> -->
                     <!--<li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/catalogo">Recientes</a></li>-->
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/catalogo">Catalogo</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/carrito">Carrito</a></li>
