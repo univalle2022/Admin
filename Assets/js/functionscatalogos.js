@@ -99,17 +99,21 @@ function filtrocategorias() {
         for (var j = 0; j < objdata.length; j++) {
 
             if (objdata[j].Tipo == nombrecategorias[i]) {
-                htmlcatalogos += `<div class="col-12 col-md-6 col-lg-4">
-                <div class="clean-product-item">
-                    <div class="image"><a href=""><img width="120" height="180" class="img-fluid d-block mx-auto imgtam" src="Assets/Images/productos/${objdata[j].foto}"></a></div>
-                   
-                    <div class="productname"><a href="#">${objdata[j].Nombre}</a></div>
-                    <div class="about">
-                        <div class="price">
-                            <h3>${objdata[j].Precio} Bs.</h3>
-                        </div>
-                    </div>
-                   <center><button rl="${objdata[j].IdProducto}" class="btn btn-primary btndetalle" type="button"><i class="icon-basket"></i> Ver</button></center> 
+                htmlcatalogos += `
+                <div class="rounded bg-white mx-2 mb-3" style="width: 12rem;">
+                <div class="mt-2 mr-2 d-flex justify-content-end">
+                <span class="position-relative col-3 badge badge-primary">10%</span>
+                </div>        
+                <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[j].foto}" alt="">
+                <div class="card-body text-center">
+                    <p class="card-title h5"><strong>${objdata[j].Nombre}</strong></p>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <p class="mt-2 h6">${objdata[j].Tipo}</p>
+                    <button onclick="openmodal();" rl="${objdata[j].IdProducto}" class="btn btn-sm btn-primary mt-2 btndetalle" type="button">Ver<i class="icon-basket ml-2"></i></button> 
                 </div>
             </div>`;
             }
