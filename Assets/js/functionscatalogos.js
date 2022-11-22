@@ -73,13 +73,13 @@ function allcatalogoProductos() {
             </div>        
             <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[i].foto}" alt="">
             <div class="card-body text-center">
-                <h6 class="card-title">${objdata[i].Nombre}</h6>
+                <p class="card-title h5"><strong>${objdata[i].Nombre}</strong></p>
                 <i class="fas fa-star text-warning"></i>
                 <i class="fas fa-star text-warning"></i>
                 <i class="fas fa-star text-warning"></i>
                 <i class="fas fa-star text-warning"></i>
                 <i class="fas fa-star text-warning"></i>
-                <p class="mt-2 h5"><strong>${objdata[i].Precio} Bs.</strong></p>
+                <p class="mt-2 h6">${objdata[i].Tipo}</p>
                 <button onclick="openmodal();" rl="${objdata[i].IdProducto}" class="btn btn-sm btn-primary mt-2 btndetalle" type="button">Ver<i class="icon-basket ml-2"></i></button> 
             </div>
         </div>
