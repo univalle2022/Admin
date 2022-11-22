@@ -7,10 +7,6 @@
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.16
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,11 +28,7 @@ CREATE TABLE `tcategorias` (
   `Tipo` varchar(255) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tcategorias`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `tcategorias` (`IdCategoria`, `Tipo`, `Descripcion`, `Estado`) VALUES
 (1, 'Poleras', 'poleras', 1),
@@ -54,7 +46,7 @@ CREATE TABLE `tcolores` (
   `Nombre` varchar(50) DEFAULT NULL,
   `Background` int DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,7 +62,7 @@ CREATE TABLE `tcompra` (
   `Total` int DEFAULT NULL,
   `Fecha` date DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tcompra`
@@ -96,7 +88,7 @@ CREATE TABLE `tcontrato` (
   `FileUrl` varchar(256) NOT NULL,
   `FileSize` int NOT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -111,7 +103,7 @@ CREATE TABLE `tdetalleventas` (
   `Cantidad` int DEFAULT NULL,
   `Precio` int DEFAULT NULL,
   `Descuento` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -124,7 +116,7 @@ CREATE TABLE `tmaterialpr` (
   `Nombre` varchar(255) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tmaterialpr`
@@ -151,7 +143,7 @@ CREATE TABLE `tmodulos` (
   `IdModulo` int NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Estado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tmodulos`
@@ -184,7 +176,7 @@ CREATE TABLE `tofertas` (
   `FechaInicio` date DEFAULT NULL,
   `FechaFinal` date DEFAULT NULL,
   `Estado` tinyint DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tofertas`
@@ -208,7 +200,7 @@ CREATE TABLE `tpermisos` (
   `w` int NOT NULL,
   `u` int NOT NULL,
   `d` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tpermisos`
@@ -248,7 +240,7 @@ CREATE TABLE `tproductocolores` (
   `IdPColor` int NOT NULL,
   `IdColor` int DEFAULT NULL,
   `IdProducto` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -267,7 +259,7 @@ CREATE TABLE `tproductos` (
   `foto` varchar(50) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tproductos`
@@ -295,7 +287,7 @@ CREATE TABLE `tproveedores` (
   `Telefono` varchar(255) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tproveedores`
@@ -316,7 +308,7 @@ CREATE TABLE `troles` (
   `Tipo` varchar(255) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `troles`
@@ -338,7 +330,7 @@ CREATE TABLE `ttallas` (
   `IdTalla` int NOT NULL,
   `Nombre` varchar(10) NOT NULL,
   `Estado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ttallas`
@@ -359,7 +351,7 @@ CREATE TABLE `ttallasprecio` (
   `IdTalla` int NOT NULL,
   `IdProducto` int NOT NULL,
   `Precio` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ttallasprecio`
@@ -389,7 +381,7 @@ CREATE TABLE `tusuarios` (
   `Contrasenia` varchar(555) DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL,
   `Token` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tusuarios`
@@ -421,7 +413,7 @@ CREATE TABLE `tventas` (
   `FechaCompra` datetime DEFAULT NULL,
   `MetodoPago` varchar(255) DEFAULT NULL,
   `Total` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
