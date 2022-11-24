@@ -167,8 +167,6 @@
             $arrdata = array(0);
             $requestdelete= $this->update($querydelete,$arrdata);
 
-   
-
                 if($requestdelete){
                     $requestdelete='ok';
                     $return=$requestdelete;

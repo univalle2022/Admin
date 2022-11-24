@@ -10,7 +10,7 @@
         public $strfilename;
         public $strurl;
         public $intsize;
-        public $status;
+        public $estado;
 
         public function __construct() {
 
@@ -18,7 +18,7 @@
         }
         //YO
         public function selectcontratos(){
-            $sql= "SELECT * FROM tcontrato";
+            $sql= "SELECT * FROM tcontrato where Estado != 0";
             $request=$this->selectall($sql);
             return $request;
         }
@@ -28,27 +28,34 @@
             return $request;
         }
 
-        public function insertofertas($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $filetamanio_r){
+        public function insertofertas($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $status){
             
             $return = 0;
-            $this->strintif=$strnombre_r;
-            $this->strfilename=$strnombre_r;
-            $this->strfilename=$strnombre_r;
+
+            $this->intidusuarios=$idusuario_r;
+            $this->intidclientes=$idcliente_r;
             $this->strdescripcion=$strdescripcion_r;
-            $this->intsize=$filetamanio_r;
-            $this->strurl=$download_r;
             $this->strdate=$datefecha_r;
-            //$this->intidusuario=$intidusuario_r;
+            $this->strfilename=$filename_r;
+            $this->strurl=$download_r;
+            $this->intsize=$filetamanio_r;
+            $this->estado=$status;
 
             $sql= "SELECT * FROM tcontrato where file_name = '{$this->strfilename}'";
             $requestinsert = $this->selectall($sql);
 
             if(empty($requestinsert)){
 
-                //Tipo de dato para fechas
-
-                $queryinsert="INSERT INTO tcontrato(file_name, description, size, url, date_file) VALUES (?,?,?,?,?)";
-                $arrdata = array($this->strfilename,$this->strdescripcion,$this->intsize,$this->strurl,$this->strdate);
+                $queryinsert="INSERT INTO tcontrato(IdUsuario, IdCliente, Descripcion, Fecha, FileName,  FileUrl, FileSize, Estado) VALUES (?,?,?,?,?,?,?,?)";
+                $arrdata = array(
+                    $this->intidusuarios,
+                    $this->intidclientes,
+                    $this->strdescripcion,
+                    $this->strdate,
+                    $this->strfilename,
+                    $this->strurl,
+                    $this->intsize,
+                    $this->estado);
                 $requestinsert= $this->insert($queryinsert,$arrdata);
                 $return = $requestinsert;
             }else{
@@ -63,7 +70,7 @@
             $this->intidcontratos=$idcontrato_r;
             
             //if(empty($requestdelete)){
-                $querydelete="DELETE from tcontrato WHERE IdContratos  = $this->intidcontratos";
+                $querydelete="UPDATE tcontrato SET Estado=? IdContrato = $this->intidcontratos";
                 $arrdata = array(0);
                 $requestdelete= $this->delete($querydelete,$arrdata);
 

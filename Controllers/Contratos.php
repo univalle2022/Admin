@@ -33,7 +33,7 @@ class Contratos extends Controllers
             $btndelete = '';
             $script = '';
 
-            $btndownload = '<a href="./Assets/archivos/contratos/' . $arrdata[$i]['FileUrl'] . '" class="btn btn-sm btn-warning"><i class="fa-solid fa-download"></i></a>';
+            $btndownload = '<a href="' . $arrdata[$i]['FileUrl'] . '" class="btn btn-sm btn-warning"><i class="fa-solid fa-download"></i></a>';
 
             if ($arrdata[$i]['Estado'] == 1) {
                 $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';

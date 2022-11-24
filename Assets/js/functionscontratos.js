@@ -192,8 +192,6 @@ function fnteditcontrato(){
                     console.log(request.responseText);
                     var objdata=JSON.parse(request.responseText);
                     if(objdata.status){
-
-                        
                         document.querySelector("#idusuario").value=objdata.data.IdUsuario;
                         document.querySelector("#txtnombre").value=objdata.data.Nombre;
                         document.querySelector("#txtapellido").value=objdata.data.Apellido;
