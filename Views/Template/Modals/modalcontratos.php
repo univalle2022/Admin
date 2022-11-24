@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
             <input id="idcontrato" name="idcontrato" type="hidden" value="0">
-            <input id="idcontrato" name="idusuario" type="hidden" value="<?php echo($_SESSION['userdata']['IdUsuario']);?>">
+            <input id="idusuario" name="idusuario" type="hidden" value="<?php echo($_SESSION['userdata']['IdUsuario']);?>">
             <p class="text-primary">Todos los campos son obligatorios.</p>
             <div class="form-row">
               <div class="form-group col-md-6">

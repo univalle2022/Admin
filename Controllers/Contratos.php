@@ -85,8 +85,7 @@ class Contratos extends Controllers
         $intidusuario = intval($_POST['idusuario']);
         $intidcliente = intval($_POST['idcliente']);
         $strdescripcion = strclean($_POST['txtdescripcion']);
-        $datefecha = $_POST['txtfecha'];
-
+        $datefecha = date('Y-m-d');
         $filename = $_FILES['txtarchivo']['name'];
         $fileurl = './Assets/archivos/contratos/'.$filename;
         $filetamanio = $_FILES['txtarchivo']['size'];
