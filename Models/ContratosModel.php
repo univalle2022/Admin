@@ -3,12 +3,14 @@
     class ContratosModel extends Mysql{
 
         public $intidcontratos;
-        public $strfilename;
+        public $intidusuarios;
+        public $intidclientes;
         public $strdescription;
-        public $intsize;
-        public $strurl;
         public $strdate;
-        public $intidusuario;
+        public $strfilename;
+        public $strurl;
+        public $intsize;
+        public $status;
 
         public function __construct() {
 
@@ -20,10 +22,17 @@
             $request=$this->selectall($sql);
             return $request;
         }
+        public function selectusuarios(){
+            $sql= "SELECT * FROM tusuarios where IdRoles = 2 and Estado != 0";
+            $request=$this->selectall($sql);
+            return $request;
+        }
 
-        public function insertofertas($strnombre_r, $strdescripcion_r, $filetamanio_r, $download_r, $datefecha_r){
+        public function insertofertas($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $filetamanio_r){
             
             $return = 0;
+            $this->strintif=$strnombre_r;
+            $this->strfilename=$strnombre_r;
             $this->strfilename=$strnombre_r;
             $this->strdescripcion=$strdescripcion_r;
             $this->intsize=$filetamanio_r;
