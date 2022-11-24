@@ -16,19 +16,36 @@
 
             parent::__construct();
         }
-        //YO
+        
         public function selectcontratos(){
-            $sql= "SELECT * FROM tcontrato where Estado != 0";
+            $sql= "SELECT
+            t.IdContrato,
+            tu.Nombre as Usuario,
+            tc.Nombre as Cliente,
+            t.Descripcion,
+            t.FileName,
+            t.FileSize,
+            t.FileUrl,
+            t.Fecha,
+            t.Estado
+        FROM
+            tcontrato t,
+            tusuarios tu,
+            tusuarios tc
+        WHERE
+            t.IdUsuario = tu.IdUsuario AND 
+            t.IdCliente = tc.IdUsuario";
             $request=$this->selectall($sql);
             return $request;
         }
+
         public function selectusuarios(){
             $sql= "SELECT * FROM tusuarios where IdRoles = 2 and Estado != 0";
             $request=$this->selectall($sql);
             return $request;
         }
 
-        public function insertofertas($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $status){
+        public function insertcontratos($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $status){
             
             $return = 0;
 
@@ -41,7 +58,7 @@
             $this->intsize=$filetamanio_r;
             $this->estado=$status;
 
-            $sql= "SELECT * FROM tcontrato where file_name = '{$this->strfilename}'";
+            $sql= "SELECT * FROM tcontrato where FileName = '{$this->strfilename}'";
             $requestinsert = $this->selectall($sql);
 
             if(empty($requestinsert)){

@@ -1,31 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.1.2
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost:3306
--- Tiempo de generación: 21-11-2022 a las 00:14:43
--- Versión del servidor: 8.0.30
--- Versión de PHP: 7.4.16
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `ecommerce`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tcategorias`
---
 
 CREATE TABLE `tcategorias` (
   `IdCategoria` int NOT NULL,
@@ -34,20 +6,10 @@ CREATE TABLE `tcategorias` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tcategorias`
---
-
 INSERT INTO `tcategorias` (`IdCategoria`, `Tipo`, `Descripcion`, `Estado`) VALUES
 (1, 'Poleras', 'poleras', 1),
 (2, 'Jeans', 'Jeans ', 1),
 (3, 'Busos', 'Busos', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tcolores`
---
 
 CREATE TABLE `tcolores` (
   `IdColor` int NOT NULL,
@@ -55,12 +17,6 @@ CREATE TABLE `tcolores` (
   `Background` int DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
 );
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tcompra`
---
 
 CREATE TABLE `tcompra` (
   `IdCompra` int NOT NULL,
@@ -71,20 +27,6 @@ CREATE TABLE `tcompra` (
   `Fecha` date DEFAULT NULL,
   `Estado` tinyint(1) DEFAULT NULL
 );
-
---
--- Volcado de datos para la tabla `tcompra`
---
-
-INSERT INTO `tcompra` (`IdCompra`, `IdUsuario`, `IdProveedor`, `IdMaterialPr`, `Total`, `Fecha`, `Estado`) VALUES
-(1, 2, 2, 2, 1500, '2022-10-04', 1),
-(2, 1, 2, 2, 1500, '2022-10-18', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tcontrato`
---
 
 CREATE TABLE `tcontrato` (
   `IdContrato` int NOT NULL,
@@ -98,12 +40,6 @@ CREATE TABLE `tcontrato` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tdetalleventas`
---
-
 CREATE TABLE `tdetalleventas` (
   `IdDetalleVenta` int NOT NULL,
   `IdVenta` int DEFAULT NULL,
@@ -113,12 +49,6 @@ CREATE TABLE `tdetalleventas` (
   `Descuento` int DEFAULT NULL
 );
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tmaterialpr`
---
-
 CREATE TABLE `tmaterialpr` (
   `IdMaterialPr` int NOT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
@@ -126,36 +56,11 @@ CREATE TABLE `tmaterialpr` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tmaterialpr`
---
-
-INSERT INTO `tmaterialpr` (`IdMaterialPr`, `Nombre`, `Descripcion`, `Estado`) VALUES
-(1, 'Algodon', 'Esponjoso Rosado', 1),
-(2, 'Lino', 'Lino', 1),
-(3, 'Prueba', 'dsadas', 1),
-(4, 'Madera', 'Madera Dura', 1),
-(5, 'Toasha', 'Toalla Mojada', 1),
-(6, 'Toallas', 'Pollos sss', 1),
-(7, 'Lana', 'Lana', 1),
-(8, 'Pruebas', 'adf', 0),
-(9, 'Pruebadsfa', 'dasfads', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tmodulos`
---
-
 CREATE TABLE `tmodulos` (
   `IdModulo` int NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Estado` tinyint(1) NOT NULL
 );
-
---
--- Volcado de datos para la tabla `tmodulos`
---
 
 INSERT INTO `tmodulos` (`IdModulo`, `Nombre`, `Estado`) VALUES
 (1, 'Dashboard', 1),
@@ -168,14 +73,6 @@ INSERT INTO `tmodulos` (`IdModulo`, `Nombre`, `Estado`) VALUES
 (8, 'Proveedores', 1),
 (9, 'Materiales', 1),
 (10, 'Compras', 1);
-(11, 'Descuentos', 1);
-(12, 'Contratos', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tofertas`
---
 
 CREATE TABLE `tofertas` (
   `IdOferta` int NOT NULL,
@@ -186,19 +83,6 @@ CREATE TABLE `tofertas` (
   `Estado` tinyint DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tofertas`
---
-
-INSERT INTO `tofertas` (`IdOferta`, `IdProducto`, `Porcentaje`, `FechaInicio`, `FechaFinal`, `Estado`) VALUES
-(4, 36, 10, '2022-11-16', '2022-11-25', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tpermisos`
---
-
 CREATE TABLE `tpermisos` (
   `IdPermisos` int NOT NULL,
   `IdModulo` int NOT NULL,
@@ -208,10 +92,6 @@ CREATE TABLE `tpermisos` (
   `u` int NOT NULL,
   `d` int NOT NULL
 );
-
---
--- Volcado de datos para la tabla `tpermisos`
---
 
 INSERT INTO `tpermisos` (`IdPermisos`, `IdModulo`, `IdRol`, `r`, `w`, `u`, `d`) VALUES
 (201, 1, 2, 1, 0, 0, 0),
@@ -235,23 +115,11 @@ INSERT INTO `tpermisos` (`IdPermisos`, `IdModulo`, `IdRol`, `r`, `w`, `u`, `d`) 
 (289, 9, 1, 1, 1, 1, 1),
 (290, 10, 1, 1, 1, 1, 1);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tproductocolores`
---
-
 CREATE TABLE `tproductocolores` (
   `IdPColor` int NOT NULL,
   `IdColor` int DEFAULT NULL,
   `IdProducto` int DEFAULT NULL
 );
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tproductos`
---
 
 CREATE TABLE `tproductos` (
   `IdProducto` int NOT NULL,
@@ -266,10 +134,6 @@ CREATE TABLE `tproductos` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tproductos`
---
-
 INSERT INTO `tproductos` (`IdProducto`, `IdCategoria`, `IdOfertas`, `Nombre`, `Color`, `Precio`, `Cantidad`, `foto`, `Descripcion`, `Estado`) VALUES
 (36, 1, 1, 'Pantalon', NULL, 50, 100, 'item-1.png', 'poleras', 1),
 (37, 1, 1, 'Polera Verde', NULL, 60, 20, 'vede.jpg', 'poleras', 1),
@@ -277,12 +141,6 @@ INSERT INTO `tproductos` (`IdProducto`, `IdCategoria`, `IdOfertas`, `Nombre`, `C
 (39, 3, 1, 'Buso ', NULL, 40, 10, 'MicrosoftTeams-image.png', 'Buso Canela', 0),
 (40, 2, 1, 'Jean M', NULL, 50, 10, 'Jean-Slim-Jossy-01.jpg', 'Jeans', 1),
 (41, 1, 10, 'Poleras', NULL, 1200, 10, 'a.jpg', 'poleras', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tproveedores`
---
 
 CREATE TABLE `tproveedores` (
   `IdProveedor` int NOT NULL,
@@ -294,19 +152,9 @@ CREATE TABLE `tproveedores` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tproveedores`
---
-
 INSERT INTO `tproveedores` (`IdProveedor`, `Nombre`, `Ciudad`, `Correo`, `Telefono`, `Descripcion`, `Estado`) VALUES
 (1, 'Miguel', 'El Alto', 'carloms@gmail.com', '68512458', 'Proveedor del alto xd', 1),
 (2, 'Leo', 'El Alto', 'leo@gmail.com', '68512458', 'dfdsaf', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `troles`
---
 
 CREATE TABLE `troles` (
   `IdRoles` int NOT NULL,
@@ -315,21 +163,11 @@ CREATE TABLE `troles` (
   `Descripcion` varchar(255) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `troles`
---
-
 INSERT INTO `troles` (`IdRoles`, `Tipo`, `Estado`, `Descripcion`) VALUES
 (1, 'Administrador', 1, 'Tiene Todos los permisos'),
 (2, 'Clientes', 1, 'Clientes que se registraran dentro de la página Web'),
 (3, 'Shorts', 1, '1'),
 (5, 'Pruebas', 2, 'xd');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ttallas`
---
 
 CREATE TABLE `ttallas` (
   `IdTalla` int NOT NULL,
@@ -337,19 +175,9 @@ CREATE TABLE `ttallas` (
   `Estado` tinyint(1) NOT NULL
 );
 
---
--- Volcado de datos para la tabla `ttallas`
---
-
 INSERT INTO `ttallas` (`IdTalla`, `Nombre`, `Estado`) VALUES
 (1, 'L', 1),
 (2, 'M', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ttallasprecio`
---
 
 CREATE TABLE `ttallasprecio` (
   `IdPrecioTalla` int NOT NULL,
@@ -358,19 +186,9 @@ CREATE TABLE `ttallasprecio` (
   `Precio` float NOT NULL
 );
 
---
--- Volcado de datos para la tabla `ttallasprecio`
---
-
 INSERT INTO `ttallasprecio` (`IdPrecioTalla`, `IdTalla`, `IdProducto`, `Precio`) VALUES
 (1, 1, 36, 124.99),
 (2, 2, 36, 126.99);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tusuarios`
---
 
 CREATE TABLE `tusuarios` (
   `IdUsuario` int NOT NULL,
@@ -388,10 +206,6 @@ CREATE TABLE `tusuarios` (
   `Token` varchar(100) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tusuarios`
---
-
 INSERT INTO `tusuarios` (`IdUsuario`, `IdRoles`, `ci`, `Nit`, `Nombre`, `NombreFiscal`, `Apellido`, `Telefono`, `Correo`, `Direccion`, `Contrasenia`, `Estado`, `Token`) VALUES
 (1, 1, '2454235', 2147483647, 'Jose Maria', 'Jose Mayta', 'Mayta Daza', 67016437, 'mayta5544@gmail.com', 'Av 6 de Marzo', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 'e763da91f87cb82b37e2-95673f85ccd121a6a152-00b64278614f30258738-a3feb5c84c9f877159d2'),
 (2, 2, NULL, NULL, 'Ariel merma', NULL, 'Quispe', NULL, 'ar@gmail.com', NULL, '12345', 1, NULL),
@@ -405,12 +219,6 @@ INSERT INTO `tusuarios` (`IdUsuario`, `IdRoles`, `ci`, `Nit`, `Nombre`, `NombreF
 (11, 2, '2454235', 54635, 'Ariel', 'Ariel Merma', 'Quispe', 68512458, 'merma@gmail.com', 'Av 6 de Marzo', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 2, NULL),
 (12, 2, '0876785', 87756876, 'Mercedes', 'Mercedes Merlo', 'Merlo', 68512458, 'merlo@gmail.com', 'Av 6 de Marzo', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 2, NULL);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tventas`
---
-
 CREATE TABLE `tventas` (
   `IdVenta` int NOT NULL,
   `IdUsuario` int DEFAULT NULL,
@@ -420,223 +228,115 @@ CREATE TABLE `tventas` (
   `Total` int DEFAULT NULL
 );
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tcategorias`
---
 ALTER TABLE `tcategorias`
   ADD PRIMARY KEY (`IdCategoria`);
 
---
--- Indices de la tabla `tcolores`
---
 ALTER TABLE `tcolores`
   ADD PRIMARY KEY (`IdColor`);
 
---
--- Indices de la tabla `tcompra`
---
 ALTER TABLE `tcompra`
   ADD PRIMARY KEY (`IdCompra`),
   ADD KEY `IdProveedor` (`IdProveedor`),
   ADD KEY `IdUsuario` (`IdUsuario`),
   ADD KEY `IdMaterialPr` (`IdMaterialPr`);
 
---
--- Indices de la tabla `tcontrato`
---
 ALTER TABLE `tcontrato`
   ADD PRIMARY KEY (`IdContrato`),
   ADD KEY `IdCliente` (`IdCliente`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
---
--- Indices de la tabla `tdetalleventas`
---
 ALTER TABLE `tdetalleventas`
   ADD PRIMARY KEY (`IdDetalleVenta`),
   ADD KEY `IdVenta` (`IdVenta`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tmaterialpr`
---
 ALTER TABLE `tmaterialpr`
   ADD PRIMARY KEY (`IdMaterialPr`);
 
---
--- Indices de la tabla `tmodulos`
---
 ALTER TABLE `tmodulos`
   ADD PRIMARY KEY (`IdModulo`);
 
---
--- Indices de la tabla `tofertas`
---
 ALTER TABLE `tofertas`
   ADD PRIMARY KEY (`IdOferta`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tpermisos`
---
 ALTER TABLE `tpermisos`
   ADD PRIMARY KEY (`IdPermisos`),
   ADD KEY `IdModulo` (`IdModulo`),
   ADD KEY `IdRol` (`IdRol`);
 
---
--- Indices de la tabla `tproductocolores`
---
 ALTER TABLE `tproductocolores`
   ADD PRIMARY KEY (`IdPColor`);
 
---
--- Indices de la tabla `tproductos`
---
 ALTER TABLE `tproductos`
   ADD PRIMARY KEY (`IdProducto`),
   ADD KEY `IdCategoria` (`IdCategoria`),
   ADD KEY `IdOfertas` (`IdOfertas`);
 
---
--- Indices de la tabla `tproveedores`
---
 ALTER TABLE `tproveedores`
   ADD PRIMARY KEY (`IdProveedor`);
 
---
--- Indices de la tabla `troles`
---
 ALTER TABLE `troles`
   ADD PRIMARY KEY (`IdRoles`);
 
---
--- Indices de la tabla `ttallas`
---
 ALTER TABLE `ttallas`
   ADD PRIMARY KEY (`IdTalla`);
 
---
--- Indices de la tabla `ttallasprecio`
---
 ALTER TABLE `ttallasprecio`
   ADD PRIMARY KEY (`IdPrecioTalla`),
   ADD KEY `IdTalla` (`IdTalla`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tusuarios`
---
 ALTER TABLE `tusuarios`
   ADD PRIMARY KEY (`IdUsuario`),
   ADD KEY `IdRoles` (`IdRoles`);
 
---
--- Indices de la tabla `tventas`
---
 ALTER TABLE `tventas`
   ADD PRIMARY KEY (`IdVenta`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tcategorias`
---
 ALTER TABLE `tcategorias`
   MODIFY `IdCategoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT de la tabla `tcolores`
---
 ALTER TABLE `tcolores`
   MODIFY `IdColor` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `tcompra`
---
 ALTER TABLE `tcompra`
   MODIFY `IdCompra` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `tcontrato`
---
 ALTER TABLE `tcontrato`
   MODIFY `IdContrato` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `tmaterialpr`
---
 ALTER TABLE `tmaterialpr`
   MODIFY `IdMaterialPr` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT de la tabla `tmodulos`
---
 ALTER TABLE `tmodulos`
   MODIFY `IdModulo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- AUTO_INCREMENT de la tabla `tofertas`
---
 ALTER TABLE `tofertas`
   MODIFY `IdOferta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT de la tabla `tpermisos`
---
 ALTER TABLE `tpermisos`
   MODIFY `IdPermisos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 
---
--- AUTO_INCREMENT de la tabla `tproductocolores`
---
 ALTER TABLE `tproductocolores`
   MODIFY `IdPColor` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `tproductos`
---
 ALTER TABLE `tproductos`
   MODIFY `IdProducto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
---
--- AUTO_INCREMENT de la tabla `tproveedores`
---
 ALTER TABLE `tproveedores`
   MODIFY `IdProveedor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `troles`
---
 ALTER TABLE `troles`
   MODIFY `IdRoles` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT de la tabla `ttallas`
---
 ALTER TABLE `ttallas`
   MODIFY `IdTalla` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `ttallasprecio`
---
 ALTER TABLE `ttallasprecio`
   MODIFY `IdPrecioTalla` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `tusuarios`
---
 ALTER TABLE `tusuarios`
   MODIFY `IdUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

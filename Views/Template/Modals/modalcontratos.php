@@ -11,11 +11,12 @@
         <div class="modal-body">
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
             <input id="idcontrato" name="idcontrato" type="hidden" value="0">
+            <input id="idcontrato" name="idusuario" type="hidden" value="<?php echo($_SESSION['userdata']['IdUsuario']);?>">
             <p class="text-primary">Todos los campos son obligatorios.</p>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label class="control-label">Usuario</label>
-                <input class="form-control" value="<?php echo($_SESSION['userdata']['Nombre']);?>" id="idusuario" name="idusuario" type="text" required="" readonly>
+                <input class="form-control" value="<?php echo($_SESSION['userdata']['Nombre']);?>" type="text" readonly>
               </div>
               <div class="form-group mb-3 col-md-6">
                 <label class="control-label">Fecha</label>
@@ -31,7 +32,7 @@
 
               <div class="form-group col-md-6">
                 <label class="control-label">Descripcion</label>
-                <input type="text" class="form-control" id="txtdescripcion" name="txtdescripcion" minlength="2" maxlength="150" pattern="[a-zA-Z]{0,9}" placeholder="Nombre del Archivo">
+                <input type="text" class="form-control" id="txtdescripcion" name="txtdescripcion" maxlength="200" placeholder="Nombre del Archivo">
               </div>
             </div>
 

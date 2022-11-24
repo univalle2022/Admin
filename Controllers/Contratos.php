@@ -95,7 +95,10 @@ class Contratos extends Controllers
         $temp = $_FILES['txtarchivo']['tmp_name'];
 
         if ($intidcontrato == 0) {
-            $requestrol = $this->model->insertcontratos($intidusuario, $intidcliente, $strdescripcion,$datefecha, $filename, $fileurl, $filetamanio, $strstate);
+            $requestrol = $this->model->insertcontratos(
+                $intidusuario, 
+                $intidcliente, 
+                $strdescripcion,$datefecha, $filename, $fileurl, $filetamanio, $strstate);
             $option = 1;
         }
         if ($intidcontrato != 0) {

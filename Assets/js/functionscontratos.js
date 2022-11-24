@@ -53,9 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //PREPARACION Y LLAMADO DE CONTROLADOR PARA INSERTAR DATOS.
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = baseurl + '/Contratos/setcontratos';
-
         var formdata = new FormData(formcontratos);
-
         request.open("POST", ajaxUrl, true);
         request.send(formdata);
 
@@ -172,44 +170,44 @@ function openmodal() {
 
 
 
-function fnteditcontrato(){
-    var btneditcontratos=Array.apply(null, document.querySelectorAll(".btneditcontratos"));
-    btneditcontratos.forEach(function(btneditcontratos){        
-        btneditcontratos.addEventListener("click",function(){
+function fnteditcontrato() {
+    var btneditcontratos = Array.apply(null, document.querySelectorAll(".btneditcontratos"));
+    btneditcontratos.forEach(function (btneditcontratos) {
+        btneditcontratos.addEventListener("click", function () {
             //alert("Click to close...");
             document.querySelector('#titlemodal').innerHTML = "Actualizar Usuario";
-            document.querySelector('.modal-header').classList.replace("headerregister","headerupdate");
-            document.querySelector('#btnactionform').classList.replace("btn-primary","btn-info");
-            document.querySelector('#btntext').innerHTML="Actualizar";
+            document.querySelector('.modal-header').classList.replace("headerregister", "headerupdate");
+            document.querySelector('#btnactionform').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btntext').innerHTML = "Actualizar";
 
             var idproducto = this.getAttribute("rl");
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = baseurl+'/Usuarios/getusuario/'+idproducto;
-            request.open("GET",ajaxUrl,true);
+            var ajaxUrl = baseurl + '/Usuarios/getusuario/' + idproducto;
+            request.open("GET", ajaxUrl, true);
             request.send();
-            request.onreadystatechange =function(){
-                if(request.readyState == 4 && request.status==200){
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
                     console.log(request.responseText);
-                    var objdata=JSON.parse(request.responseText);
-                    if(objdata.status){
-                        document.querySelector("#idusuario").value=objdata.data.IdUsuario;
-                        document.querySelector("#txtnombre").value=objdata.data.Nombre;
-                        document.querySelector("#txtapellido").value=objdata.data.Apellido;
-                        document.querySelector("#txtcorreo").value=objdata.data.Correo;
+                    var objdata = JSON.parse(request.responseText);
+                    if (objdata.status) {
+                        document.querySelector("#idusuario").value = objdata.data.IdUsuario;
+                        document.querySelector("#txtnombre").value = objdata.data.Nombre;
+                        document.querySelector("#txtapellido").value = objdata.data.Apellido;
+                        document.querySelector("#txtcorreo").value = objdata.data.Correo;
                         //document.querySelector("#txtcontrasenia").value=objdata.data.Contrasenia;
 
-                        
-                        document.querySelector("#txtrol").value=objdata.data.IdRoles;
+
+                        document.querySelector("#txtrol").value = objdata.data.IdRoles;
                         $('#txtrol').selectpicker('render');
-                        
 
 
-                        if(objdata.data.Estado == 1){
+
+                        if (objdata.data.Estado == 1) {
                             var optionselect = '<option value="1" selected class="notblock">Activo</option>';
-                        }else{
+                        } else {
                             var optionselect = '<option value="2" selected class="notblock">Inactivo</option>';
                         }
-                        var htmlselect=`${optionselect} 
+                        var htmlselect = `${optionselect} 
                                         <option value="1">Activo</option> 
                                         <option value="2">Inactivo</option>
                                         `;
@@ -218,14 +216,14 @@ function fnteditcontrato(){
 
 
                         $('#modalformusuario').modal("show");
-                    }else{
-                        swal("Error",objdata.msg,"error");
+                    } else {
+                        swal("Error", objdata.msg, "error");
                     }
                 }
             }
-           
+
         });
-    });    
+    });
 }
 
 function fntdelcontrato() {
