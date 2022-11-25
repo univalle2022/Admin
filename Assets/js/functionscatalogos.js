@@ -69,7 +69,7 @@ function allcatalogoProductos() {
         htmlcatalogos += `
         <div class="rounded bg-white mx-2 mb-3" style="width: 12rem;">
             <div class="mt-2 mr-2 d-flex justify-content-end">
-            <span class="position-relative col-3 badge badge-primary">10%</span>
+            <span class="position-relative col-3 badge badge-primary">${objdata[i].Porcentaje}%</span>
             </div>        
             <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[i].foto}" alt="">
             <div class="card-body text-center">
@@ -102,7 +102,7 @@ function filtrocategorias() {
                 htmlcatalogos += `
                 <div class="rounded bg-white mx-2 mb-3" style="width: 12rem;">
                 <div class="mt-2 mr-2 d-flex justify-content-end">
-                <span class="position-relative col-3 badge badge-primary">10%</span>
+                <span class="position-relative col-3 badge badge-primary">${objdata[j].Porcentaje}</span>
                 </div>        
                 <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[j].foto}" alt="">
                 <div class="card-body text-center">
