@@ -70,12 +70,11 @@ class Contratos extends Controllers
         $arrdata = $this->model->selectusuarios();
         if (count($arrdata) > 0) {
             for ($i = 0; $i < count($arrdata); $i++) {
-                $htmloptions .= '<option value="' . $arrdata[$i]['IdUsuario'] . '">' . $arrdata[$i]['Nombre'] . '</option>';
+                $htmloptions .= '<option value="' . $arrdata[$i]['IdUsuario'] . '">' . $arrdata[$i]['Nombre'] ." ". $arrdata[$i]['Apellido'] . '</option>';
             }
         }
         echo $htmloptions;
         die();
-
     }
 
     public function setcontratos()
@@ -87,7 +86,7 @@ class Contratos extends Controllers
         $strdescripcion = strclean($_POST['txtdescripcion']);
         $datefecha = date('Y-m-d');
         $filename = $_FILES['txtarchivo']['name'];
-        $fileurl = './Assets/archivos/contratos/'.$filename;
+        $fileurl = './Assets/archivos/contratos/' . $filename;
         $filetamanio = $_FILES['txtarchivo']['size'];
         $strstate = intval($_POST['liststatus']);
 
@@ -95,9 +94,15 @@ class Contratos extends Controllers
 
         if ($intidcontrato == 0) {
             $requestrol = $this->model->insertcontratos(
-                $intidusuario, 
-                $intidcliente, 
-                $strdescripcion,$datefecha, $filename, $fileurl, $filetamanio, $strstate);
+                $intidusuario,
+                $intidcliente,
+                $strdescripcion,
+                $datefecha,
+                $filename,
+                $fileurl,
+                $filetamanio,
+                $strstate
+            );
             $option = 1;
         }
         if ($intidcontrato != 0) {
@@ -117,19 +122,16 @@ class Contratos extends Controllers
             if ($option == 2) {
                 $arrresponse = array('status' => true, 'msg' => 'Datos Repetidos');
             }
-
         } else {
             if ($requestrol == -1) {
                 $arrresponse = array('status' => false, 'msg' => '!Atencion! Ya existe un contrato con este nombre');
             } else {
                 $arrresponse = array('status' => true, 'msg' => 'No se almaceno los datos');
             }
-
         }
 
         echo json_encode($arrresponse, JSON_UNESCAPED_UNICODE);
         die();
-
     }
 
     public function delcontrato()
@@ -139,7 +141,6 @@ class Contratos extends Controllers
             $requestdelete = $this->model->deletecontrato($intidcontrato);
             if ($requestdelete == 'ok') {
                 $arrresponse = array('status' => true, 'msg' => 'Datos Eliminados Correctamente' . $requestdelete);
-
             } else {
                 $arrresponse = array('status' => true, 'msg' => 'No se elimino los datos' . $requestdelete);
             }
@@ -147,5 +148,4 @@ class Contratos extends Controllers
         }
         die();
     }
-
 }

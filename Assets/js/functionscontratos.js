@@ -33,100 +33,155 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     var formcontratos = document.querySelector("#formcontratos");
+
     formcontratos.onsubmit = function (e) {
         e.preventDefault();
 
-        //VALIDACION
-        var intidcontrato = document.querySelector("#idcontrato").value;
+
+        //TODO: Capturamos los datos
+        // var intidcontrato = document.querySelector("#idcontrato").value;
+        // var intstatus = document.querySelector("#liststatus").value;
         var intidusuario = document.querySelector("#idusuario").value;
+        var datefecha = document.querySelector("#txtfecha").value;
+        var filearchivo = document.querySelector("#txtarchivo").value;
         var intidcliente = document.querySelector("#idcliente").value;
         var strdescripcion = document.querySelector("#txtdescripcion").value;
-        var datefecha = document.querySelector("#txtfecha").value;
-        var intstatus = document.querySelector("#liststatus").value;
-        var filearchivo = document.querySelector("#txtarchivo").value;
 
-        if (intidcliente == '' || strdescripcion == '' || datefecha == '' || filearchivo == null) {
-            swal("Atención", "Todos los campos son obligatorios.", "error");
+        //TODO: Captura para los errores
+        const validateUsuario = document.querySelector('#validateusuario');
+        const validateFecha = document.querySelector('#validatefecha');
+        const validateArchivo = document.querySelector('#validatearchivo');
+        const validateDescripcion = document.querySelector('#validatedescripcion');
+        const validateCliente = document.querySelector('#validatecliente');
+
+        // TODO: Remover y agregar messages
+        (intidusuario === '') ? _remove(validateUsuario, 'Este campo usuario es obligatorio') : _add(validateUsuario);
+        (datefecha === '') ? _remove(validateFecha, 'Este campo fecha es obligatorio') : _add(validateFecha);
+        (filearchivo === '') ? _remove(validateArchivo, 'Este campo archivo es obligatorio') : _add(validateArchivo);
+        (intidcliente == '') ? _remove(validateCliente, 'Este campo cliente es obligatorio') : _add(validateCliente);
+        (strdescripcion == '') ? _remove(validateDescripcion, 'Este campo descripcion es obligatorio') : _add(validateDescripcion);
+
+        //TODO: Post Contrato
+        if (intidusuario == '' || datefecha == '' || filearchivo === '' || intidcliente == '' || strdescripcion == '') {
             return false;
-        }
-
-        //PREPARACION Y LLAMADO DE CONTROLADOR PARA INSERTAR DATOS.
-        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = baseurl + '/Contratos/setcontratos';
-        var formdata = new FormData(formcontratos);
-        request.open("POST", ajaxUrl, true);
-        request.send(formdata);
-
-        request.onreadystatechange = function () {
-            if (request.readyState == 4 && request.status == 200) {
-                console.log(request.responseText);
-                var obdata = JSON.parse(request.responseText);
-                console.log(obdata);
-                if (obdata.status) {
-                    $('#modalformcontratos').modal("hide");
-                    formcontratos.reset();
-                    swal("Se agrego correctamente", obdata.msg, "success");
-                    tablecontratos.ajax.reload(function () {
-                        //fntdelcontratos();
-                        //fntusuariocontrato();
-                    });
-
-                } else {
-                    swal("Error", obdata.msg, "error");
+        } else {
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = baseurl + '/Contratos/setcontratos';
+            var formdata = new FormData(formcontratos);
+            request.open("POST", ajaxUrl, true);
+            request.send(formdata);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    console.log(request.responseText);
+                    var obdata = JSON.parse(request.responseText);
+                    console.log(obdata);
+                    if (obdata.status) {
+                        $('#modalformcontratos').modal("hide");
+                        formcontratos.reset();
+                        swal("Se agrego correctamente", obdata.msg, "success");
+                        tablecontratos.ajax.reload();
+                    } else {
+                        swal("Error", obdata.msg, "error");
+                    }
                 }
             }
         }
     }
-
 }, false);
 
 
-//
-$('#txtcliente').on('input', function () {
-    // clearTimeout(this.delay);
-    // this.delay = setTimeout(function () {
-    //     $(this).trigger('search');
-    // }.bind(this), 300);
+function _remove(input, message) {
+    input.classList.remove('d-none');
+    input.innerHTML = message;
+}
 
-}).on('search', function () {
-    if (this.value) {
-        document.getElementById('txtcarnet').value = this.value;
-        fntEncontrar(this.value);
+function _add(input) {
+    input.classList.add('d-none');
+    input.innerHTML = '';
+}
+
+var _validFileExtensions = [".pdf", ".doc", ".docx"];
+function ValidateSingleInput(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    document.querySelector('#validatearchivo').classList.add('d-none');
+                    document.querySelector('#validatearchivo').innerHTML = '';
+                    blnValid = true;
+                    break;
+                }
+            }
+
+            if (!blnValid) {
+                document.querySelector('#validatearchivo').classList.remove('d-none');
+                document.querySelector('#validatearchivo').innerHTML = `Formato invalido, solo se aceptan archivos ${_validFileExtensions.join(", ")}`;
+                oInput.value = "";
+                return false;
+            }
+        }
     }
-});
+    return true;
+}
+
+function _validateFile(input) {
+    // var file = input.file.value;
+
+    // var reg = /(.*?)\.(pdf|doc|docx)$/;
+    // if (!file.match(reg)) {
+    //     return false;
+    // }
+}
+
+//
+// $('#txtcliente').on('input', function () {
+//     // clearTimeout(this.delay);
+//     // this.delay = setTimeout(function () {
+//     //     $(this).trigger('search');
+//     // }.bind(this), 300);
+
+// }).on('search', function () {
+//     if (this.value) {
+//         document.getElementById('txtcarnet').value = this.value;
+//         fntEncontrar(this.value);
+//     }
+// });
 
 
 
 function fntEncontrar(variable) {
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxurl = baseurl + '/Clientes/getClienteSearch';
-    request.open("POST", ajaxurl, true);
-    request.send(variable);
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var objdata = JSON.parse(request.responseText);
+    //     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    //     var ajaxurl = baseurl + '/Clientes/getClienteSearch';
+    //     request.open("POST", ajaxurl, true);
+    //     request.send(variable);
+    //     request.onreadystatechange = function () {
+    //         if (request.readyState == 4 && request.status == 200) {
+    //             var objdata = JSON.parse(request.responseText);
 
-            if (objdata.status) {
-                var estadoUsuario = objdata.data.Estado == 1 ?
-                    '<span class="badge badge-success">Activo</span>' :
-                    '<span class="badge badge-danger">Inactivo</span>';
+    //             if (objdata.status) {
+    //                 var estadoUsuario = objdata.data.Estado == 1 ?
+    //                     '<span class="badge badge-success">Activo</span>' :
+    //                     '<span class="badge badge-danger">Inactivo</span>';
 
-                document.querySelector("#celIdentificacion").innerHTML = objdata.data.ci;
-                document.querySelector("#celNit").innerHTML = objdata.data.Nit;
-                document.querySelector("#celNombre").innerHTML = objdata.data.Nombre;
-                document.querySelector("#celNombrefiscal").innerHTML = objdata.data.NombreFiscal;
-                document.querySelector("#celApellido").innerHTML = objdata.data.Apellido;
-                document.querySelector("#celTelefono").innerHTML = objdata.data.Telefono;
-                document.querySelector("#celEmail").innerHTML = objdata.data.Correo;
-                document.querySelector("#celDireccion").innerHTML = objdata.data.Direccion;
-                document.querySelector("#celEstado").innerHTML = estadoUsuario;
+    //                 document.querySelector("#celIdentificacion").innerHTML = objdata.data.ci;
+    //                 document.querySelector("#celNit").innerHTML = objdata.data.Nit;
+    //                 document.querySelector("#celNombre").innerHTML = objdata.data.Nombre;
+    //                 document.querySelector("#celNombrefiscal").innerHTML = objdata.data.NombreFiscal;
+    //                 document.querySelector("#celApellido").innerHTML = objdata.data.Apellido;
+    //                 document.querySelector("#celTelefono").innerHTML = objdata.data.Telefono;
+    //                 document.querySelector("#celEmail").innerHTML = objdata.data.Correo;
+    //                 document.querySelector("#celDireccion").innerHTML = objdata.data.Direccion;
+    //                 document.querySelector("#celEstado").innerHTML = estadoUsuario;
 
-                $('#modalviewuser').modal('show');
-            } else {
-                swal("Error", objdata.msg, "error");
-            }
-        }
-    }
+    //                 $('#modalviewuser').modal('show');
+    //             } else {
+    //                 swal("Error", objdata.msg, "error");
+    //             }
+    //         }
+    //     }
 }
 
 //BUSCA USUASRIO
@@ -144,7 +199,7 @@ function fntusuariocontrato() {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             document.querySelector('#idcliente').innerHTML = request.responseText;
-            document.querySelector('#idcliente').value = 1;
+            // document.querySelector('#idcliente').value = 0;
             $('#idcliente').selectpicker('render');
         }
     }
@@ -158,6 +213,7 @@ window.addEventListener('load', function () {
 
 
 $('#tablecontratos').DataTable();
+
 function openmodal() {
     document.querySelector('#idcontrato').value = "";
     document.querySelector('#titlemodal').innerHTML = "Agregar Contrato";
@@ -254,10 +310,7 @@ function fntdelcontrato() {
                             var objdata = JSON.parse(request.responseText);
                             if (objdata.status) {
                                 swal("Eliminar!", objdata.msg, "success");
-                                tablecontratos.ajax.reload(function () {
-                                    //fntdelcontratos();
-                                });
-
+                                tablecontratos.ajax.reload();
                             } else {
                                 swal("Error", objdata.msg, "error");
                             }

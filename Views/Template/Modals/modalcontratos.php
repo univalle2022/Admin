@@ -11,45 +11,52 @@
         <div class="modal-body">
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
             <input id="idcontrato" name="idcontrato" type="hidden" value="0">
-            <input id="idusuario" name="idusuario" type="hidden" value="<?php echo($_SESSION['userdata']['IdUsuario']);?>">
-            <p class="text-primary">Todos los campos son obligatorios.</p>
+            <input id="idusuario" name="idusuario" type="hidden" value="<?php echo ($_SESSION['userdata']['IdUsuario']); ?>">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label class="control-label">Usuario</label>
-                <input class="form-control" value="<?php echo($_SESSION['userdata']['Nombre']);?>" type="text" readonly>
+                <input class="form-control" value="<?php echo ($_SESSION['userdata']['Nombre']); ?>" type="text" readonly>
+                <small class="text-danger d-none" id="validateusuario"></small>
               </div>
               <div class="form-group mb-3 col-md-6">
                 <label class="control-label">Fecha</label>
                 <input type="date" class="form-control" id="txtfecha" name="txtfecha" value="<?php echo date("Y-m-d"); ?>" readonly>
+                <small class="text-danger d-none" id="validatefecha"></small>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group mb-3 col-md-6">
                 <label class="control-label">Seleccionar Archivo</label>
-                <input type="file" class="form-control" id="txtarchivo" name="txtarchivo" accept=".doc,.docx,.pdf">
+                <div class="custom-file">
+                  <input type="file" onchange="ValidateSingleInput(this)" id="txtarchivo" name="txtarchivo" class="custom-file-input">
+                  <label class="custom-file-label" for="validatedCustomFile">Seleccione un archivo</label>
+                  <small class="text-danger d-none" id="validatearchivo"></small>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label">Cliente</label>
+                <select class="form-control" data-live-search="true" id="idcliente" name="idcliente" placeholder="Seleccione al cliente"></select>
+                <small class="text-danger d-none" id="validatecliente"></small>
               </div>
 
-              <div class="form-group col-md-6">
-                <label class="control-label">Descripcion</label>
-                <input type="text" class="form-control" id="txtdescripcion" name="txtdescripcion" maxlength="200" placeholder="Nombre del Archivo">
-              </div>
             </div>
 
-            <div class="form-row">
 
-              <div class="form-group col-md-6">
+            <div class="form-row">
+              <!-- <div class="form-group col-md-6">
                 <label for="exampleSelect1">Estado</label>
                 <select class="form-control" id="liststatus" name="liststatus" placeholder="Estado">
                   <option value="1">Activo</option>
                   <option value="2">Inactivo</option>
                 </select>
+              </div> -->
+              <div class="form-group col-12">
+                <label class="control-label">Descripcion</label>
+                <input type="text" class="form-control" id="txtdescripcion" name="txtdescripcion" maxlength="200" placeholder="Nombre del Archivo">
+                <small class="text-danger d-none" id="validatedescripcion">Este campo es obligatorio</small>
               </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Cliente</label>
-                <select class="form-control" data-live-search="true" id="idcliente" name="idcliente" placeholder="Seleccione al cliente"></select>
-              </div>
-              
+
             </div>
 
             <div class="tile-footer">
@@ -61,7 +68,6 @@
                 <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
             </div>
           </form>
-
         </div>
 
       </div>
