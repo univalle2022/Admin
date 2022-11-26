@@ -26,6 +26,7 @@ class Contratos extends Controllers
     public function getcontratos()
     {
         $arrdata = $this->model->selectcontratos();
+
         for ($i = 0; $i < count($arrdata); $i++) {
 
             $btndownload = '';
@@ -40,25 +41,17 @@ class Contratos extends Controllers
             } else {
                 $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
             }
-
             if ($_SESSION['permisosmod']['u']) {
-                $btnedit = '<button class="btn btn-primary btn-sm btneditstyle btneditcontratos" rl="' . $arrdata[$i]['IdContrato'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
+                $btnedit = '<button class="btn btn-primary btn-sm btneditstyle" rl="' . $arrdata[$i]['IdContrato'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
             }
             if ($_SESSION['permisosmod']['d']) {
-                $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelcontratos" rl="' . $arrdata[$i]['IdContrato'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
+                $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelcontrato" rl="' . $arrdata[$i]['IdContrato'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
             }
-
             if ($i == (count($arrdata) - 1)) {
-                $script = '<script type="text/javascript"> fnteditcontrato();fntdelcontrato();</script>';
+                $script = '<script type="text/javascript"> fntdelcontrato();</script>';
             }
 
             $arrdata[$i]['options'] = '<div class="text-center">' . $btndownload . ' ' . $btnedit . ' ' . $btndelete . ' ' . $script . ' </div>';
-
-            // $arrdata[$i]['options'] = '
-            // <div class="text-center">
-            //     <button class="btn btn-danger btn-sm btndelstyle btndelcontratos" rl="' . $arrdata[$i]['IdContrato'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>
-            //     <script type="text/javascript"> fntdelcontratos();</script>
-            // </div>';
         }
         echo json_encode($arrdata, JSON_UNESCAPED_UNICODE);
         die();

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { "data": 'Descripcion' },
             { "data": 'FileName' },
             { "data": 'FileSize' },
-            { "data": 'FileUrl' },
+            // { "data": 'FileUrl' },
             { "data": 'Fecha' },
             { "data": 'Estado' },
             { "data": 'options' }
@@ -125,45 +125,6 @@ function ValidateSingleInput(oInput) {
     return true;
 }
 
-function fntEncontrar(variable) {
-    //     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    //     var ajaxurl = baseurl + '/Clientes/getClienteSearch';
-    //     request.open("POST", ajaxurl, true);
-    //     request.send(variable);
-    //     request.onreadystatechange = function () {
-    //         if (request.readyState == 4 && request.status == 200) {
-    //             var objdata = JSON.parse(request.responseText);
-
-    //             if (objdata.status) {
-    //                 var estadoUsuario = objdata.data.Estado == 1 ?
-    //                     '<span class="badge badge-success">Activo</span>' :
-    //                     '<span class="badge badge-danger">Inactivo</span>';
-
-    //                 document.querySelector("#celIdentificacion").innerHTML = objdata.data.ci;
-    //                 document.querySelector("#celNit").innerHTML = objdata.data.Nit;
-    //                 document.querySelector("#celNombre").innerHTML = objdata.data.Nombre;
-    //                 document.querySelector("#celNombrefiscal").innerHTML = objdata.data.NombreFiscal;
-    //                 document.querySelector("#celApellido").innerHTML = objdata.data.Apellido;
-    //                 document.querySelector("#celTelefono").innerHTML = objdata.data.Telefono;
-    //                 document.querySelector("#celEmail").innerHTML = objdata.data.Correo;
-    //                 document.querySelector("#celDireccion").innerHTML = objdata.data.Direccion;
-    //                 document.querySelector("#celEstado").innerHTML = estadoUsuario;
-
-    //                 $('#modalviewuser').modal('show');
-    //             } else {
-    //                 swal("Error", objdata.msg, "error");
-    //             }
-    //         }
-    //     }
-}
-
-//BUSCA USUASRIO
-/*document.querySelector('#txtcliente').addEventListener('change', function (e) {
-    e.preventDefault();
-    let valor = document.querySelector('#txtcliente').value;
-    alert('--> '+ valor);
-});*/
-
 function fntusuariocontrato() {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     var ajaxUrl = baseurl + '/Contratos/getselectusuarios';
@@ -180,7 +141,6 @@ function fntusuariocontrato() {
 
 window.addEventListener('load', function () {
     fnteditcontrato();
-    fntdelcontrato();
     fntusuariocontrato();
 }, false)
 
@@ -196,8 +156,6 @@ function openmodal() {
     document.querySelector('#formcontratos').reset();
     $('#modalformcontratos').modal("show");
 };
-
-
 
 function fnteditcontrato() {
     var btneditcontratos = Array.apply(null, document.querySelectorAll(".btneditcontratos"));
@@ -256,13 +214,13 @@ function fnteditcontrato() {
 }
 
 function fntdelcontrato() {
-    var btndelcontratos = document.querySelectorAll(".btndelcontratos")
-    btndelcontratos.forEach(function (btndelcontratos) {
-        btndelcontratos.addEventListener("click", function () {
-            var idcontrato = this.getAttribute("rl");
+    var btndelcontrato = document.querySelectorAll(".btndelcontrato")
+    btndelcontrato.forEach(function (btndelcontrato) {
+        btndelcontrato.addEventListener("click", function () {
+            var idcontratos = this.getAttribute("rl");
             swal({
-                title: "Eliminar registro de contrato",
-                text: "¿Realmente Quiere este registro?",
+                title: "Eliminar Contrato",
+                text: "¿Realmente quiere eliminar el Contrato?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonText: "Si, Eliminar",
@@ -273,17 +231,17 @@ function fntdelcontrato() {
                 if (isConfirm) {
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                     var ajaxUrl = baseurl + '/Contratos/delcontrato/';
-                    var strdata = "idcontrato=" + idcontrato;
+                    var strdata = "idcontrato="+idcontratos;
                     request.open("POST", ajaxUrl, true);
                     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     request.send(strdata);
                     request.onreadystatechange = function () {
                         if (request.readyState == 4 && request.status == 200) {
-                            //console.log(request.responseText);
                             var objdata = JSON.parse(request.responseText);
                             if (objdata.status) {
                                 swal("Eliminar!", objdata.msg, "success");
-                                tablecontratos.ajax.reload();
+                                tablecontratos.ajax.reload(function () {
+                                });
                             } else {
                                 swal("Error", objdata.msg, "error");
                             }

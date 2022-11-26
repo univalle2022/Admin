@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          
+
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
 
             <input class="d-none" id="idcontrato" name="idcontrato" type="text" value="0">
@@ -70,8 +70,8 @@
                 <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
             </div>
           </form>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>

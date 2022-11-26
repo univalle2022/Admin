@@ -79,15 +79,12 @@ class ContratosModel extends Mysql
         return $return;
     }
 
-    public function deletecontrato(int $idcontrato_r)
+    public function deletecontrato(int $idcontratos_r)
     {
-
-        $this->intidcontrato = $idcontrato_r;
-
-        //if(empty($requestdelete)){
-        $querydelete = "UPDATE tcontrato SET Estado=? IdContrato = $this->intidcontrato";
+        $this->intidcontrato = $idcontratos_r;
+        $querydelete = "UPDATE tcontrato SET Estado=? WHERE IdContrato = $this->intidcontrato";
         $arrdata = array(0);
-        $requestdelete = $this->delete($querydelete, $arrdata);
+        $requestdelete = $this->update($querydelete, $arrdata);
 
         if ($requestdelete) {
             $requestdelete = 'ok';
@@ -99,4 +96,5 @@ class ContratosModel extends Mysql
 
         return $return;
     }
+    
 }
