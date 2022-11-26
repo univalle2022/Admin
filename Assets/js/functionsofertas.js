@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "iDisplayLength": 10,
         "order": [[0, "desc"]]
     });
-
+    
     var formofertas = document.querySelector("#formofertas");
 
     formofertas.onsubmit = function (e) {
@@ -108,6 +108,7 @@ function validateNumber(e) {
 }
 
 function openmodal() {
+    document.querySelector("#selected").classList.add('d-none');
     document.querySelector('#idoferta').value = "";
     document.querySelector('#titlemodal').innerHTML = "Nueva Oferta";
     document.querySelector('.modal-header').classList.replace("headerupdate", "headerregister");
@@ -148,7 +149,7 @@ function fnteditofertas() {
             request.send();
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    //console.log(request.responseText);
+                    console.log(request.responseText);
                     var objdata = JSON.parse(request.responseText);
                     if (objdata.status) {
                         document.querySelector("#idoferta").value = objdata.data.IdOferta;
@@ -156,6 +157,8 @@ function fnteditofertas() {
                         document.querySelector("#txtporcentaje").value = objdata.data.Porcentaje;
                         document.querySelector("#txtfechaini").value = objdata.data.FechaInicio;
                         document.querySelector("#txtfechafin").value = objdata.data.FechaFinal;
+                        document.querySelector("#selected").classList.remove('d-none');
+                        
                         $('#txtproducto').selectpicker('render');
 
                         if (objdata.data.Estado == 1) {

@@ -37,7 +37,7 @@
               <small class="text-danger d-none" id="validatefechafin"></small>
             </div>
           </div>
-          <!-- <div class="form-row">
+          <div class="form-row" id="selected">
             <div class="form-group col-md-6">
               <label for="exampleSelect1">Estado</label>
               <select class="form-control" id="liststatus" name="liststatus" placeholder="Estado">
@@ -45,7 +45,7 @@
                 <option value="2">Inactivo</option>
               </select>
             </div>
-          </div> -->
+          </div>
           <div class="tile-footer">
             <button id="btnactionform" class="btn btn-primary" type="submit">
               <i class="fa fa-fw fa-lg fa-check-circle"></i>

@@ -26,8 +26,9 @@ class CatalogoModel extends Mysql
         // $sql= "SELECT tp.IdProducto, tp.IdCategoria, tp.IdOfertas, tp.Nombre, tp.Precio, tp.Cantidad, tp.foto, tp.Descripcion, tp.Estado, tc.Tipo FROM tproductos tp, tcategorias tc WHERE tp.Estado != 0 AND tp.IdCategoria = tc.IdCategoria AND tp.Estado != 2";
         $sql = "SELECT tp.IdProducto, tp.IdCategoria, tp.IdOfertas, tp.Nombre, tp.Precio, tp.Cantidad, tp.foto, tp.Descripcion, tp.Estado, tc.Tipo, tof.Porcentaje
         FROM tproductos tp
-        INNER JOIN tcategorias tc ON tp.IdCategoria = tc.IdCategoria  
-        LEFT JOIN tofertas tof ON tp.IdProducto = tof.IdProducto WHERE tp.Estado != 0";
+            INNER JOIN tcategorias tc ON tp.IdCategoria = tc.IdCategoria
+            LEFT JOIN tofertas tof ON tp.IdProducto = tof.IdProducto AND tof.Estado != 0
+        WHERE tp.Estado != 0";
         $request = $this->selectall($sql);
         return $request;
     }
