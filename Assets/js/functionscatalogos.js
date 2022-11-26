@@ -19,18 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
     requestcat.open("GET", ajaxUrlcat, true);
     requestcat.send();
 
-
-
     request.onreadystatechange = function () {
         if (request.status == 200) {
             //console.log(request.responseText);
-
-
             request.onload = function () {
                 objdata = JSON.parse(request.responseText);
                 allcatalogoProductos();
-
-
             }
 
         }
@@ -67,11 +61,17 @@ function allcatalogoProductos() {
     var htmlcatalogos = '';
     for (var i = 0; i < objdata.length; i++) {
         htmlcatalogos += `
-        <div class="rounded bg-white mx-2 mb-3" style="width: 12rem;">
-            <div class="mt-2 mr-2 d-flex justify-content-end">
-            <span class="position-relative col-3 badge badge-primary">${objdata[i].Porcentaje}%</span>
-            </div>        
-            <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[i].foto}" alt="">
+        <div class="rounded bg-white mx-2 mb-3" style="width: 12rem">
+            <div class="mt-2 mb-1 mr-2 ml-2">
+                <div class="d-flex justify-content-between">
+                    <span class="col-3"><i class="fas fa-heart"></i></span>`;
+                    if (objdata[i].Porcentaje != null) {
+                        htmlcatalogos += `<span class="col-3 badge badge-primary d-inline-flex p-2">${objdata[i].Porcentaje} %</span>`;
+                    }
+                    htmlcatalogos += `
+                </div>
+                <img class="card-img-to img-fluid" src="Assets/Images/productos/${objdata[i].foto}">
+            </div>
             <div class="card-body text-center">
                 <p class="card-title h5"><strong>${objdata[i].Nombre}</strong></p>
                 <i class="fas fa-star text-warning"></i>
@@ -82,8 +82,7 @@ function allcatalogoProductos() {
                 <p class="mt-2 h6">${objdata[i].Tipo}</p>
                 <button onclick="openmodal();" rl="${objdata[i].IdProducto}" class="btn btn-sm btn-primary mt-2 btndetalle" type="button">Ver<i class="icon-basket ml-2"></i></button> 
             </div>
-        </div>
-        `;
+            </div>`;
     }
     document.querySelector('.catalogolist').innerHTML = htmlcatalogos;
     openmodal();
@@ -97,14 +96,19 @@ function filtrocategorias() {
 
     for (var i = 0; i < nombrecategorias.length; i++) {
         for (var j = 0; j < objdata.length; j++) {
-
             if (objdata[j].Tipo == nombrecategorias[i]) {
                 htmlcatalogos += `
-                <div class="rounded bg-white mx-2 mb-3" style="width: 12rem;">
-                <div class="mt-2 mr-2 d-flex justify-content-end">
-                <span class="position-relative col-3 badge badge-primary">${objdata[j].Porcentaje}</span>
-                </div>        
-                <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[j].foto}" alt="">
+                <div class="rounded bg-white mx-2 mb-3" style="width: 12rem">
+                <div class="mt-2 mb-1 mr-2 ml-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="col-3"><i class="fas fa-heart"></i></span>`;
+                if (objdata[j].Porcentaje != null) {
+                    htmlcatalogos += `<span class="col-3 badge badge-primary d-inline-flex p-2">${objdata[j].Porcentaje} %</span>`;
+                }
+                htmlcatalogos += `   
+                </div>
+                    <img class="position-relative card-img-to img-fluid" src="Assets/Images/productos/${objdata[j].foto}">
+                </div>
                 <div class="card-body text-center">
                     <p class="card-title h5"><strong>${objdata[j].Nombre}</strong></p>
                     <i class="fas fa-star text-warning"></i>
@@ -115,11 +119,9 @@ function filtrocategorias() {
                     <p class="mt-2 h6">${objdata[j].Tipo}</p>
                     <button onclick="openmodal();" rl="${objdata[j].IdProducto}" class="btn btn-sm btn-primary mt-2 btndetalle" type="button">Ver<i class="icon-basket ml-2"></i></button> 
                 </div>
-            </div>`;
+                </div>`;
             }
-
         }
-
     }
 
     document.querySelector('.catalogolist').innerHTML = htmlcatalogos;
