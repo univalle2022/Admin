@@ -35,6 +35,8 @@ class Contratos extends Controllers
             $script = '';
 
             $btndownload = '<a href="' . $arrdata[$i]['FileUrl'] . '" class="btn btn-sm btn-warning"><i class="fa-solid fa-download"></i></a>';
+            
+            $arrdata[$i]['FileSize'] = $this->show_filesize($arrdata[$i]['FileUrl'], 2);
 
             if ($arrdata[$i]['Estado'] == 1) {
                 $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
@@ -55,6 +57,16 @@ class Contratos extends Controllers
         }
         echo json_encode($arrdata, JSON_UNESCAPED_UNICODE);
         die();
+    }
+
+    function show_filesize($filename, $decimalplaces = 0) {
+ 
+        $size = filesize($filename);
+        $sizes = array('B', 'kB', 'MB', 'GB', 'TB');
+        for ($i=0; $size > 1024 && $i < count($sizes) - 1; $i++) {
+           $size /= 1024;
+        }
+        return round($size, $decimalplaces).' '.$sizes[$i];
     }
 
     public function getselectusuarios()

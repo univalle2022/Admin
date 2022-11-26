@@ -20,7 +20,7 @@ class ContratosModel extends Mysql
 
     public function selectcontratos()
     {
-        $sql = "SELECT t.IdContrato, tu.Nombre as Usuario, tc.Nombre as Cliente, t.Descripcion, t.FileName, t.FileSize, t.FileUrl, t.Fecha, t.Estado
+        $sql = "SELECT t.IdContrato, CONCAT_WS(' ',tu.Nombre, tu.Apellido) Usuario, CONCAT_WS(' ',tc.Nombre, tc.Apellido) Cliente, t.Descripcion, t.FileName, t.FileSize, t.FileUrl, t.Fecha, t.Estado
         FROM tcontrato t, tusuarios tu, tusuarios tc
         WHERE t.IdUsuario = tu.IdUsuario AND t.IdCliente = tc.IdUsuario AND t.Estado != 0";
         $request = $this->selectall($sql);

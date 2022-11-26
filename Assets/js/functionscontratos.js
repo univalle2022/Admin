@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { "data": 'Estado' },
             { "data": 'options' }
         ],
-        "resonsieve": "true",
+        "responsive": "true",
         "bDestroy": true,
         "iDisplayLength": 10,
         "order": [[0, "desc"]]
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         $('#modalformcontratos').modal("hide");
                         formcontratos.reset();
                         swal("Se agrego correctamente", obdata.msg, "success");
-                        tablecontratos.ajax.reload(function () {});
+                        tablecontratos.ajax.reload(function () { });
                     } else {
                         swal("Error", obdata.msg, "error");
                     }
@@ -140,7 +140,6 @@ function fntusuariocontrato() {
 }
 
 window.addEventListener('load', function () {
-    // fnteditcontrato();
     fntusuariocontrato();
 }, false)
 
