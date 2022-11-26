@@ -9,9 +9,11 @@
           </button>
         </div>
         <div class="modal-body">
+          
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
-            <input id="idcontrato" name="idcontrato" type="hidden" value="0">
-            <input id="idusuario" name="idusuario" type="hidden" value="<?php echo ($_SESSION['userdata']['IdUsuario']); ?>">
+
+            <input class="d-none" id="idcontrato" name="idcontrato" type="text" value="0">
+
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label class="control-label">Usuario</label>

@@ -70,7 +70,7 @@ class Contratos extends Controllers
         $arrdata = $this->model->selectusuarios();
         if (count($arrdata) > 0) {
             for ($i = 0; $i < count($arrdata); $i++) {
-                $htmloptions .= '<option value="' . $arrdata[$i]['IdUsuario'] . '">' . $arrdata[$i]['Nombre'] ." ". $arrdata[$i]['Apellido'] . '</option>';
+                $htmloptions .= '<option value="' . $arrdata[$i]['IdUsuario'] . '">' . $arrdata[$i]['Nombre'] . " " . $arrdata[$i]['Apellido'] . '</option>';
             }
         }
         echo $htmloptions;
@@ -79,18 +79,19 @@ class Contratos extends Controllers
 
     public function setcontratos()
     {
-        //dep($_POST);
+        // dep($_POST);
+        $intidusuario = $_SESSION['userdata']['IdUsuario'];
+        $datefecha = date('Y-m-d');
+        $strstate = 1;
+
         $intidcontrato = intval($_POST['idcontrato']);
-        $intidusuario = intval($_POST['idusuario']);
         $intidcliente = intval($_POST['idcliente']);
         $strdescripcion = strclean($_POST['txtdescripcion']);
-        $datefecha = date('Y-m-d');
         $filename = $_FILES['txtarchivo']['name'];
-        $fileurl = './Assets/archivos/contratos/' . $filename;
         $filetamanio = $_FILES['txtarchivo']['size'];
-        $strstate = intval($_POST['liststatus']);
-
         $temp = $_FILES['txtarchivo']['tmp_name'];
+
+        $fileurl = './Assets/archivos/contratos/' . $filename;
 
         if ($intidcontrato == 0) {
             $requestrol = $this->model->insertcontratos(
@@ -106,7 +107,6 @@ class Contratos extends Controllers
             $option = 1;
         }
         if ($intidcontrato != 0) {
-
             $option = 2;
         }
 

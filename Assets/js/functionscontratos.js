@@ -1,6 +1,7 @@
 var tablecontratos;
 
 document.addEventListener("DOMContentLoaded", function () {
+
     tablecontratos = $('#tablecontratos').DataTable({
         "aProcessing": true,
         "aSeverSide": true,
@@ -37,32 +38,31 @@ document.addEventListener("DOMContentLoaded", function () {
     formcontratos.onsubmit = function (e) {
         e.preventDefault();
 
+        // var intstatus = document.querySelector("#liststatus").value;
+        // var intidusuario = document.querySelector("#idusuario").value;
+
 
         //TODO: Capturamos los datos
-        // var intidcontrato = document.querySelector("#idcontrato").value;
-        // var intstatus = document.querySelector("#liststatus").value;
-        var intidusuario = document.querySelector("#idusuario").value;
+        var intidcontrato = document.querySelector("#idcontrato").value;
         var datefecha = document.querySelector("#txtfecha").value;
         var filearchivo = document.querySelector("#txtarchivo").value;
         var intidcliente = document.querySelector("#idcliente").value;
         var strdescripcion = document.querySelector("#txtdescripcion").value;
 
         //TODO: Captura para los errores
-        const validateUsuario = document.querySelector('#validateusuario');
         const validateFecha = document.querySelector('#validatefecha');
         const validateArchivo = document.querySelector('#validatearchivo');
         const validateDescripcion = document.querySelector('#validatedescripcion');
         const validateCliente = document.querySelector('#validatecliente');
 
         // TODO: Remover y agregar messages
-        (intidusuario === '') ? _remove(validateUsuario, 'Este campo usuario es obligatorio') : _add(validateUsuario);
-        (datefecha === '') ? _remove(validateFecha, 'Este campo fecha es obligatorio') : _add(validateFecha);
-        (filearchivo === '') ? _remove(validateArchivo, 'Este campo archivo es obligatorio') : _add(validateArchivo);
-        (intidcliente == '') ? _remove(validateCliente, 'Este campo cliente es obligatorio') : _add(validateCliente);
-        (strdescripcion == '') ? _remove(validateDescripcion, 'Este campo descripcion es obligatorio') : _add(validateDescripcion);
+        (datefecha === '') ? _remove(validateFecha, 'El campo fecha es obligatorio') : _add(validateFecha);
+        (filearchivo === '') ? _remove(validateArchivo, 'El campo archivo es obligatorio') : _add(validateArchivo);
+        (intidcliente === '') ? _remove(validateCliente, 'El campo cliente es obligatorio') : _add(validateCliente);
+        (strdescripcion === '') ? _remove(validateDescripcion, 'El campo descripcion es obligatorio') : _add(validateDescripcion);
 
         //TODO: Post Contrato
-        if (intidusuario == '' || datefecha == '' || filearchivo === '' || intidcliente == '' || strdescripcion == '') {
+        if (datefecha === '' || filearchivo === '' || intidcliente === '' || strdescripcion === '') {
             return false;
         } else {
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -72,9 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
             request.send(formdata);
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    console.log(request.responseText);
                     var obdata = JSON.parse(request.responseText);
-                    console.log(obdata);
                     if (obdata.status) {
                         $('#modalformcontratos').modal("hide");
                         formcontratos.reset();
@@ -126,31 +124,6 @@ function ValidateSingleInput(oInput) {
     }
     return true;
 }
-
-function _validateFile(input) {
-    // var file = input.file.value;
-
-    // var reg = /(.*?)\.(pdf|doc|docx)$/;
-    // if (!file.match(reg)) {
-    //     return false;
-    // }
-}
-
-//
-// $('#txtcliente').on('input', function () {
-//     // clearTimeout(this.delay);
-//     // this.delay = setTimeout(function () {
-//     //     $(this).trigger('search');
-//     // }.bind(this), 300);
-
-// }).on('search', function () {
-//     if (this.value) {
-//         document.getElementById('txtcarnet').value = this.value;
-//         fntEncontrar(this.value);
-//     }
-// });
-
-
 
 function fntEncontrar(variable) {
     //     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

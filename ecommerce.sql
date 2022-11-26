@@ -82,13 +82,13 @@ CREATE TABLE `tcontrato` (
   `IdContrato` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
   `IdCliente` int(11) NOT NULL,
-  `Descripcion` varchar(256) NOT NULL,
+  `Descripcion` varchar(100) NOT NULL,
   `Fecha` date NOT NULL,
   `FileName` varchar(100) NOT NULL,
   `FileUrl` varchar(256) NOT NULL,
   `FileSize` int(11) NOT NULL,
   `Estado` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Volcado de datos para la tabla `tcontrato`
