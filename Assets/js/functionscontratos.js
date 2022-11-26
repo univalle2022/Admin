@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         (filearchivo === '') ? _remove(validateArchivo, 'El campo archivo es obligatorio') : _add(validateArchivo);
         (intidcliente === '') ? _remove(validateCliente, 'El campo cliente es obligatorio') : _add(validateCliente);
         (strdescripcion === '') ? _remove(validateDescripcion, 'El campo descripcion es obligatorio') : _add(validateDescripcion);
-        // (strdescripcion.length > 100) ? _remove(validateDescripcion, 'El campo descripcion puede tener 150 caracteres como maximo') : _add(validateDescripcion);
+        (strdescripcion.length > 100) ? _remove(validateDescripcion, 'El campo descripcion puede tener 100 caracteres como maximo') : _add(validateDescripcion);
 
         //TODO: Post Contrato
         if (datefecha === '' || filearchivo === '' || intidcliente === '' || strdescripcion === '') {

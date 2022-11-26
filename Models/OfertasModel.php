@@ -1,77 +1,81 @@
-<?php 
+<?php
 
-    class OfertasModel extends Mysql{
+class OfertasModel extends Mysql
+{
 
-        public $intidofertas;
-        public $intidproducto;
-        public $intporcentaje;
-        public $strfechaini;
-        public $strfechafin;
-        public $intstatus;
+    public $intidofertas;
+    public $intidproducto;
+    public $intporcentaje;
+    public $strfechaini;
+    public $strfechafin;
+    public $intstatus;
 
-        public function __construct() {
+    public function __construct()
+    {
 
-            parent::__construct();
-        }
+        parent::__construct();
+    }
 
-        public function selectofertas(){
-            $sql= "SELECT tof.IdOferta, tof.IdProducto, tp.Nombre, tc.Tipo, tof.Porcentaje, tof.FechaInicio, tof.FechaFinal, tof.Estado
+    public function selectofertas()
+    {
+        $sql = "SELECT tof.IdOferta, tof.IdProducto, tp.Nombre, tc.Tipo, tof.Porcentaje, tof.FechaInicio, tof.FechaFinal, tof.Estado
             FROM tofertas tof 
             INNER JOIN tproductos tp ON tof.IdProducto = tp.IdProducto 
             INNER JOIN tcategorias tc ON tp.IdCategoria = tc.IdCategoria
             WHERE tof.Estado != 0";
-            $request=$this->selectall($sql);
-            return $request;
+        $request = $this->selectall($sql);
+        return $request;
+    }
+
+    public function selectoferta(int $idoferta)
+    {
+        $this->intidoferta = $idoferta;
+        $sql = "SELECT * FROM tofertas WHERE IdOferta = $this->intidoferta";
+        $request = $this->select($sql);
+        return $request;
+    }
+    public function selectproductos()
+    {
+
+        $sql = "SELECT * FROM tproductos WHERE Estado != 0";
+        $request = $this->selectall($sql);
+        return $request;
+    }
+
+
+    public function insertofertas($idproducto,  $porcentaje, $fechaini_r, $fechafin_r)
+    {
+        $return = 0;
+        $this->intidproducto = $idproducto;
+        $this->intporcentaje = $porcentaje;
+        $this->strfechaini = $fechaini_r;
+        $this->strfechafin = $fechafin_r;
+        $this->intstatus = 1;
+
+        $sql = "SELECT * FROM tofertas WHERE IdProducto ='{$this->intidproducto}'";
+        $requestinsert = $this->selectall($sql);
+        if (empty($requestinsert)) {
+            $queryinsert = "INSERT INTO tofertas(IdProducto,Porcentaje,FechaInicio,FechaFinal,Estado) VALUES (?,?,?,?,?)";
+            $arrdata = array($this->intidproducto, $this->intporcentaje, $this->strfechaini, $this->strfechafin, $this->intstatus);
+            $requestinsert = $this->insert($queryinsert, $arrdata);
+            $return = $requestinsert;
+        } else {
+            $return = -1;
         }
+        return $return;
+    }
 
-        public function selectoferta(int $idoferta){
-            $this->intidoferta= $idoferta;
-            $sql="SELECT * FROM tofertas WHERE IdOferta = $this->intidoferta";
-            $request=$this->select($sql);
-            return $request;
-        }
-        public function selectproductos(){
-          
-            $sql="SELECT * FROM tproductos WHERE Estado != 0";
-            $request=$this->selectall($sql);
-            return $request;
-        }
+    public function updateofertas($idofertas, $producto,  $porcentaje, $fechaini_r, $fechafin_r, $status)
+    {
 
+        $this->intidofertas = $idofertas;
+        $this->intidproducto = $producto;
+        $this->intporcentaje = $porcentaje;
+        $this->strfechaini = $fechaini_r;
+        $this->strfechafin = $fechafin_r;
+        $this->intstatus = $status;
 
-        public function insertofertas($idproducto,  $porcentaje, $fechaini_r, $fechafin_r, $estado){
-            
-            $return = 0;
-            $this->intidproducto=$idproducto;
-            $this->intporcentaje=$porcentaje;
-            $this->strfechaini=$fechaini_r;
-            $this->strfechafin=$fechafin_r;
-            $this->intstatus=$estado;
-
-
-            $sql= "SELECT * FROM tofertas WHERE IdProducto ='{$this->intidproducto}'";
-            $requestinsert = $this->selectall($sql);
-            if(empty($requestinsert)){
-                $queryinsert="INSERT INTO tofertas(IdProducto,Porcentaje,FechaInicio,FechaFinal,Estado) VALUES (?,?,?,?,?)";
-                $arrdata = array($this->intidproducto,$this->intporcentaje,$this->strfechaini,$this->strfechafin,$this->intstatus);
-                $requestinsert= $this->insert($queryinsert,$arrdata);
-                $return = $requestinsert;
-            }else{
-                $return=-1;
-            }
-            return $return;
-
-        }
-    
-        public function updateofertas($idofertas, $producto,  $porcentaje, $fechaini_r, $fechafin_r, $status){
-            
-            $this->intidofertas=$idofertas;
-            $this->intidproducto=$producto;
-            $this->intporcentaje=$porcentaje;
-            $this->strfechaini=$fechaini_r;
-            $this->strfechafin=$fechafin_r;
-            $this->intstatus=$status;
-
-            /*$sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOferta != $this->intidofertas";
+        /*$sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOferta != $this->intidofertas";
             $requestupdate = $this->selectall($sql);
             
             if(!empty($requestupdate)){
@@ -80,35 +84,32 @@
                 $return=-1;
             }*/
 
-            $queryupdate="UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOferta=$this->intidofertas";
-                $arrdata = array($this->intidproducto,$this->intporcentaje,$this->strfechaini,$this->strfechafin,$this->intstatus);
-                $requestupdate= $this->update($queryupdate,$arrdata);
-                $return=$requestupdate;
-            
-            return $return;
+        $queryupdate = "UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOferta=$this->intidofertas";
+        $arrdata = array($this->intidproducto, $this->intporcentaje, $this->strfechaini, $this->strfechafin, $this->intstatus);
+        $requestupdate = $this->update($queryupdate, $arrdata);
+        $return = $requestupdate;
 
-        }
-
-        public function deleteofertas(int $idofertas_r){
-            
-            $this->intidofertas=$idofertas_r;
-    
-                $querydelete="UPDATE tofertas SET Estado=? WHERE IdOferta  = $this->intidofertas";
-                $arrdata = array(0);
-                $requestdelete= $this->update($querydelete,$arrdata);
-
-                if($requestdelete){
-                    $requestdelete='ok';
-                    $return=$requestdelete;
-                }else{
-                    $request='error';
-                    $return=$request;
-                }
-
-            return $return;
-
-        }
-    
+        return $return;
     }
 
-?>
+    public function deleteofertas(int $idofertas_r)
+    {
+
+        $this->intidofertas = $idofertas_r;
+
+        // $querydelete = "UPDATE tofertas SET Estado=? WHERE IdOferta  = $this->intidofertas";
+        $querydelete = "DELETE FROM tofertas tof WHERE tof.IdOferta = $this->intidofertas";
+        $arrdata = array(0);
+        $requestdelete = $this->update($querydelete, $arrdata);
+
+        if ($requestdelete) {
+            $requestdelete = 'ok';
+            $return = $requestdelete;
+        } else {
+            $request = 'error';
+            $return = $request;
+        }
+
+        return $return;
+    }
+}

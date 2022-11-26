@@ -12,7 +12,7 @@
 
           <form autocomplete="off" class="form-horizontal" id="formcontratos" name="formcontratos" enctype="multipart/form-data">
 
-            <input class="d-none" id="idcontrato" name="idcontrato" type="text" value="0">
+            <input class="d-none" id="idcontrato" name="idcontrato" type="hidden" value="0">
 
             <div class="form-row">
               <div class="form-group col-md-6">
