@@ -13,13 +13,6 @@ headerprincipal($data);
             <div class="block-heading">
                 <h2 class="text-info">Catalogo</h2>
             </div>
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item active"><a class="page-link">Hombre</a></li>
-                    <li class="page-item"><a class="page-link">Mujer</a></li>
-                    <li class="page-item"><a class="page-link">Juvenil</a></li>
-                </ul>
-            </nav>
             <div class="row">
                 <div class="col-md-3">
                     <div class="content h-100">
@@ -32,7 +25,7 @@ headerprincipal($data);
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 p-4">
+                <div class="col-md-9">
                     <div class="row catalogolist"></div>
                 </div>
             </div>
