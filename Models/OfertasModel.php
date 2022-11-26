@@ -13,9 +13,13 @@
 
             parent::__construct();
         }
-        //YO
+
         public function selectofertas(){
-            $sql= "SELECT * FROM tofertas where Estado != 0 ";
+            $sql= "SELECT tof.IdOferta, tof.IdProducto, tp.Nombre, tc.Tipo, tof.Porcentaje, tof.FechaInicio, tof.FechaFinal, tof.Estado
+            FROM tofertas tof 
+            INNER JOIN tproductos tp ON tof.IdProducto = tp.IdProducto 
+            INNER JOIN tcategorias tc ON tp.IdCategoria = tc.IdCategoria
+            WHERE tof.Estado != 0";
             $request=$this->selectall($sql);
             return $request;
         }

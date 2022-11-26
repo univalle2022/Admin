@@ -89,8 +89,6 @@ function allcatalogoProductos() {
 }
 
 
-
-
 function filtrocategorias() {
     var htmlcatalogos = '';
 

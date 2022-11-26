@@ -34,16 +34,16 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>IdProducto</th>
+                      <th>Nombre</th>
+                      <th>Categoria</th>
                       <th>Porcentaje</th>
                       <th>Fecha Inicio</th>
                       <th>Fecha Final</th>
-                      <th>Estatus</th>
+                      <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-
                   </tbody>
                 </table>
               </div>

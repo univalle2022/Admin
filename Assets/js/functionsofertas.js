@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded",function(){
         },
         "columns": [
             { "data": 'IdOferta' },
-            { "data": 'IdProducto' },
+            // { "data": 'IdProducto' },
+            { "data": 'Nombre' },
+            { "data": 'Tipo' },
             { "data": 'Porcentaje' },
             { "data": 'FechaInicio' },
             { "data": 'FechaFinal' },
