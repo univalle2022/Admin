@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "order": [[0, "desc"]]
     });
 
-
     var formcontratos = document.querySelector("#formcontratos");
 
     formcontratos.onsubmit = function (e) {
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // var intstatus = document.querySelector("#liststatus").value;
         // var intidusuario = document.querySelector("#idusuario").value;
-
 
         //TODO: Capturamos los datos
         var intidcontrato = document.querySelector("#idcontrato").value;
@@ -60,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         (filearchivo === '') ? _remove(validateArchivo, 'El campo archivo es obligatorio') : _add(validateArchivo);
         (intidcliente === '') ? _remove(validateCliente, 'El campo cliente es obligatorio') : _add(validateCliente);
         (strdescripcion === '') ? _remove(validateDescripcion, 'El campo descripcion es obligatorio') : _add(validateDescripcion);
+        // (strdescripcion.length > 100) ? _remove(validateDescripcion, 'El campo descripcion puede tener 150 caracteres como maximo') : _add(validateDescripcion);
 
         //TODO: Post Contrato
         if (datefecha === '' || filearchivo === '' || intidcliente === '' || strdescripcion === '') {
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         $('#modalformcontratos').modal("hide");
                         formcontratos.reset();
                         swal("Se agrego correctamente", obdata.msg, "success");
-                        tablecontratos.ajax.reload();
+                        tablecontratos.ajax.reload(function () {});
                     } else {
                         swal("Error", obdata.msg, "error");
                     }
@@ -85,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+
 }, false);
 
 
@@ -140,7 +140,7 @@ function fntusuariocontrato() {
 }
 
 window.addEventListener('load', function () {
-    fnteditcontrato();
+    // fnteditcontrato();
     fntusuariocontrato();
 }, false)
 
@@ -231,7 +231,7 @@ function fntdelcontrato() {
                 if (isConfirm) {
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                     var ajaxUrl = baseurl + '/Contratos/delcontrato/';
-                    var strdata = "idcontrato="+idcontratos;
+                    var strdata = "idcontrato=" + idcontratos;
                     request.open("POST", ajaxUrl, true);
                     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     request.send(strdata);

@@ -288,7 +288,6 @@ function fntdelusuario() {
                     var ajaxUrl = baseurl + '/Usuarios/delusuario/';
                     var strdata = "idusuario=" + idusuarios;
                     request.open("POST", ajaxUrl, true);
-                    console.log(strdata);
                     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     request.send(strdata);
                     request.onreadystatechange = function () {

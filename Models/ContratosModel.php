@@ -22,7 +22,7 @@ class ContratosModel extends Mysql
     {
         $sql = "SELECT t.IdContrato, tu.Nombre as Usuario, tc.Nombre as Cliente, t.Descripcion, t.FileName, t.FileSize, t.FileUrl, t.Fecha, t.Estado
         FROM tcontrato t, tusuarios tu, tusuarios tc
-        WHERE t.IdUsuario = tu.IdUsuario AND  t.IdCliente = tc.IdUsuario";
+        WHERE t.IdUsuario = tu.IdUsuario AND t.IdCliente = tc.IdUsuario AND t.Estado != 0";
         $request = $this->selectall($sql);
         return $request;
     }
@@ -34,19 +34,9 @@ class ContratosModel extends Mysql
         return $request;
     }
 
-    public function insertcontratos(
-        $idusuario_r,
-        $idcliente_r,
-        $strdescripcion_r,
-        $datefecha_r,
-        $filename_r,
-        $download_r,
-        $filetamanio_r,
-        $status
-    ) {
-
+    public function insertcontratos($idusuario_r, $idcliente_r, $strdescripcion_r, $datefecha_r, $filename_r, $download_r, $filetamanio_r, $status)
+    {
         $return = 0;
-
         $this->intidusuario = $idusuario_r;
         $this->intidcliente = $idcliente_r;
         $this->strdescripcion = $strdescripcion_r;
@@ -96,5 +86,4 @@ class ContratosModel extends Mysql
 
         return $return;
     }
-    
 }
