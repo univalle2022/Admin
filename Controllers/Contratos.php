@@ -2,7 +2,7 @@
 class Contratos extends Controllers
 {
 
-    public function __construct()
+    public function __construct()       
     {
         parent::__construct();
         session_start();
@@ -46,6 +46,7 @@ class Contratos extends Controllers
             // if ($_SESSION['permisosmod']['u']) {
             //     $btnedit = '<button class="btn btn-primary btn-sm btneditstyle" rl="' . $arrdata[$i]['IdContrato'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
             // }
+
             if ($_SESSION['permisosmod']['d']) {
                 $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelcontrato" rl="' . $arrdata[$i]['IdContrato'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
             }
@@ -60,7 +61,6 @@ class Contratos extends Controllers
     }
 
     function show_filesize($filename, $decimalplaces = 0) {
- 
         $size = filesize($filename);
         $sizes = array('B', 'kB', 'MB', 'GB', 'TB');
         for ($i=0; $size > 1024 && $i < count($sizes) - 1; $i++) {
