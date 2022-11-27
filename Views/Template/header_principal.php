@@ -31,7 +31,8 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/catalogo">Catalogo</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/carrito">Carrito</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/contacto">Contacto</a></li>
-                    <li class="nav-item" role="presentation"><a class="btn btn-sm btn-primary" href="<?= base_url(); ?>/login">Iniciar Sesion</a></li>
+                    <li class="nav-item" role="presentation"><a class="btn btn-sm btn-info" href="<?= base_url(); ?>/login">Iniciar Sesion</a></li>
+                    <li class="nav-item" role="presentation"><a class="btn btn-sm btn-info" href="<?= base_url(); ?>/registrarse">Registrarse</a></li>
                 </ul>
             </div>
         </div>

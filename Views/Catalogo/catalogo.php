@@ -5,7 +5,6 @@ headerprincipal($data);
 
 <main class="page catalog-page">
     <?php
-
     getmodal('modaldetalles', $data);
     ?>
     <section class="clean-block clean-catalog dark">
