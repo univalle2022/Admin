@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { "data": 'FileSize' },
             // { "data": 'FileUrl' },
             { "data": 'Fecha' },
-            { "data": 'Estado' },
+            // { "data": 'Estado' },
             { "data": 'options' }
         ],
         "responsive": "true",
@@ -57,9 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
         (datefecha === '') ? _remove(validateFecha, 'El campo fecha es obligatorio') : _add(validateFecha);
         (filearchivo === '') ? _remove(validateArchivo, 'El campo archivo es obligatorio') : _add(validateArchivo);
         (intidcliente === '') ? _remove(validateCliente, 'El campo cliente es obligatorio') : _add(validateCliente);
-        (strdescripcion === '') ? _remove(validateDescripcion, 'El campo descripcion es obligatorio') : _add(validateDescripcion);
-        (strdescripcion.length > 100) ? _remove(validateDescripcion, 'El campo descripcion puede tener 100 caracteres como maximo') : _add(validateDescripcion);
-
+        
+        if (strdescripcion === '') {
+            _remove(validateDescripcion, 'El campo descripcion es obligatorio');
+        } else if (strdescripcion.length > 100) {
+            _remove(validateDescripcion, 'El campo descripcion puede tener 100 caracteres como maximo');
+        } else {
+            _add(validateDescripcion);
+        }
+        
         //TODO: Post Contrato
         if (datefecha === '' || filearchivo === '' || intidcliente === '' || strdescripcion === '') {
             return false;

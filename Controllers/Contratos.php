@@ -38,14 +38,14 @@ class Contratos extends Controllers
             
             $arrdata[$i]['FileSize'] = $this->show_filesize($arrdata[$i]['FileUrl'], 2);
 
-            if ($arrdata[$i]['Estado'] == 1) {
-                $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
-            } else {
-                $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
-            }
-            if ($_SESSION['permisosmod']['u']) {
-                $btnedit = '<button class="btn btn-primary btn-sm btneditstyle" rl="' . $arrdata[$i]['IdContrato'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
-            }
+            // if ($arrdata[$i]['Estado'] == 1) {
+            //     $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
+            // } else {
+            //     $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
+            // }
+            // if ($_SESSION['permisosmod']['u']) {
+            //     $btnedit = '<button class="btn btn-primary btn-sm btneditstyle" rl="' . $arrdata[$i]['IdContrato'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
+            // }
             if ($_SESSION['permisosmod']['d']) {
                 $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelcontrato" rl="' . $arrdata[$i]['IdContrato'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
             }
@@ -145,9 +145,9 @@ class Contratos extends Controllers
             $intidcontrato = intval($_POST['idcontrato']);
             $requestdelete = $this->model->deletecontrato($intidcontrato);
             if ($requestdelete == 'ok') {
-                $arrresponse = array('status' => true, 'msg' => 'Datos Eliminados Correctamente' . $requestdelete);
+                $arrresponse = array('status' => true, 'msg' => 'Datos Eliminados Correctamente');
             } else {
-                $arrresponse = array('status' => true, 'msg' => 'No se elimino los datos' . $requestdelete);
+                $arrresponse = array('status' => true, 'msg' => 'No se elimino los datos');
             }
             echo json_encode($arrresponse, JSON_UNESCAPED_UNICODE);
         }

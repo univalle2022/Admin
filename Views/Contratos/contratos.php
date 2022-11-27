@@ -39,7 +39,6 @@ getmodal('modalcontratos', $data);
                   <th>Archivo</th>
                   <th>Tamaño</th>
                   <th>Fecha</th>
-                  <th>Estado</th>
                   <th>Acciones</th>
                 </tr>
               </thead>

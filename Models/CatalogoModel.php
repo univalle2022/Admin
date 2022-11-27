@@ -27,7 +27,7 @@ class CatalogoModel extends Mysql
         $sql = "SELECT tp.IdProducto, tp.IdCategoria, tp.IdOfertas, tp.Nombre, tp.Precio, tp.Cantidad, tp.foto, tp.Descripcion, tp.Estado, tc.Tipo, tof.Porcentaje
         FROM tproductos tp
             INNER JOIN tcategorias tc ON tp.IdCategoria = tc.IdCategoria
-            LEFT JOIN tofertas tof ON tp.IdProducto = tof.IdProducto AND tof.Estado != 0
+            LEFT JOIN tofertas tof ON tp.IdProducto = tof.IdProducto AND tof.Estado != 2
         WHERE tp.Estado != 0";
         $request = $this->selectall($sql);
         return $request;
@@ -35,7 +35,7 @@ class CatalogoModel extends Mysql
 
     public function selectcategoias()
     {
-        $sql = "SELECT * FROM  tcategorias WHERE Estado != 0 AND Estado != 2";
+        $sql = "SELECT * FROM tcategorias WHERE Estado != 0 AND Estado != 2";
         $request = $this->selectall($sql);
         return $request;
     }
