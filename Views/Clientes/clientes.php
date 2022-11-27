@@ -42,7 +42,7 @@
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Correo</th>
-                      <th>Estatus</th>
+                      <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>

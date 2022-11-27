@@ -37,24 +37,24 @@ class Ofertas extends Controllers
                 $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-danger">Inactivo</span>';
             }
 
-            // if ($_SESSION['permisosmod']['u']) {
-            //     $btnedit = '<button class="btn btn-primary btn-sm btneditstyle" btneditofertas rl="' . $arrdata[$i]['IdOferta'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
-            // }
+            if ($_SESSION['permisosmod']['u']) {
+                $btnedit = '<button class="btn btn-primary btn-sm btneditstyle btneditofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>';
+            }
 
-            // if ($_SESSION['permisosmod']['d']) {
-            //     $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
-            // }
-            // if ($i == (count($arrdata) - 1)) {
-            //     $script = '<script type="text/javascript"> fnteditofertas();fntdelofertas();</script>';
-            // }
+            if ($_SESSION['permisosmod']['d']) {
+                $btndelete = '<button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>';
+            }
+            if ($i == (count($arrdata) - 1)) {
+                $script = '<script type="text/javascript"> fnteditofertas();fntdelofertas();</script>';
+            }
 
-            // $arrdata[$i]['options'] = '<div class="text-center">' . $btnedit . ' ' . $btndelete . ' ' . $script . ' </div>';
+            $arrdata[$i]['options'] = '<div class="text-center">' . $btnedit . ' ' . $btndelete . ' ' . $script . ' </div>';
 
-            $arrdata[$i]['options'] = '<div class="text-center">
-                <button class="btn btn-primary btn-sm btneditstyle btneditofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>
-                <button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>
-                <script type="text/javascript"> fnteditofertas();fntdelofertas();</script>
-                </div>';
+            // $arrdata[$i]['options'] = '<div class="text-center">
+            //     <button class="btn btn-primary btn-sm btneditstyle btneditofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Editar" type="button"><i class="fas fa-pencil-alt"></i></button>
+            //     <button class="btn btn-danger btn-sm btndelstyle btndelofertas" rl="' . $arrdata[$i]['IdOferta'] . '" title="Eliminar" type="button"><i class="fas fa-trash-alt"></i></button>
+            //     <script type="text/javascript"> fnteditofertas();fntdelofertas();</script>
+            //     </div>';
         }
         echo json_encode($arrdata, JSON_UNESCAPED_UNICODE);
         die();
