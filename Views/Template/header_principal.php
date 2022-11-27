@@ -16,17 +16,22 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="<?= base_url(); ?>/Login">Iniciar sesion</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container">
+            <a class="navbar-brand logo" href="<?= base_url(); ?>">
+                <img class="mx-auto d-block img-logo" src="Assets/img/logo.png" alt="Slide Image">
+            </a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="<?= base_url(); ?>">Inicio</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/nosotros">Nosotros</a></li>
-                    <!-- <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/ofertas">Ofertas</a></li> -->
-                    <!--<li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/catalogo">Recientes</a></li>-->
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/catalogo">Catalogo</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/carrito">Carrito</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="<?= base_url(); ?>/contacto">Contacto</a></li>
+                    <li class="nav-item" role="presentation"><a class="btn btn-sm btn-primary" href="<?= base_url(); ?>/login">Iniciar Sesion</a></li>
                 </ul>
             </div>
         </div>
