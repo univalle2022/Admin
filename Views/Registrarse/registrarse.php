@@ -5,7 +5,7 @@ headerprincipal($data);
     <section class="clean-block clean-catalog dark">
         <div class=" container ">
             <div class="row justify-content-center ">
-                <div class="bg-white col-6 mt-3">
+                <div class="bg-white col-lg-6 col-12">
                     <div class="block-heading">
                         <h2 class="text-info">Registro de Datos</h2>
                         <p>Para tener un mayor conocimiento sobre tus preferencias,no olvides registrarte!.</p>
