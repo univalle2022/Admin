@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded",function(){
            var strapellido=document.querySelector("#txtapellido").value;
            var strcorreo=document.querySelector("#txtcorreo").value;
            var strcontrasenia=document.querySelector("#txtcontrasenia").value;
-    
            var intstatus=document.querySelector("#liststatus").value;
 
         if( strnombre =='' || strapellido =='' || strcorreo =='' || intstatus ==''){

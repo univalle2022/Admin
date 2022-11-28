@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     //insert fiscales
     if (document.querySelector("#formdatafiscal")) {
         let formdatafiscal = document.querySelector("#formdatafiscal");

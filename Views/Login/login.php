@@ -10,13 +10,10 @@
   <link rel="stylesheet" type="text/css" href="<?=media()?>/css/style.css">
   <!-- Font-icon css-->
   <title></title>
-
-  
-
 </head>
 
 <body>
-  <div class="content">
+  <div class="bg-background">
     <div class="d-flex flex-column vh-100">
       <div class="d-flex flex-grow-1 justify-content-center align-items-center">
       <section class="login-content">

@@ -1,6 +1,5 @@
 <?php
 headerprincipal($data);
-
 ?>
 <main class="page catalog-page">
     <section class="clean-block clean-catalog dark">
@@ -11,7 +10,7 @@ headerprincipal($data);
                         <h2 class="text-info">Registro de Datos</h2>
                         <p>Para tener un mayor conocimiento sobre tus preferencias,no olvides registrarte!.</p>
                     </div>
-                    <form class="form-horizontal" id="formclientes" name="formclientes" enctype="multipart/form-data">
+                    <form autocomplete="off" class="form-horizontal" id="formclientes" name="formclientes" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>Nombre</label>
                             <input class="form-control" name="txtnombre" id="txtnombre" placeholder="Ej. Juan Perez" type="text" required>
@@ -55,5 +54,4 @@ headerprincipal($data);
 
 <?php
 footerprincipal($data);
-
 ?>

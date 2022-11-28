@@ -1449,11 +1449,8 @@ estilos login*/
 footer {
     box-sizing: border-box;
     font-family: "Open Sans", sans-serif;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
-
-
-
 
 footer.site-footer {
     padding: 60px 30px;
@@ -1757,12 +1754,8 @@ footer#footer-3-cols div#copyright-information div#social-buttons img {
     }
 }
 
-
-
-
-
-
 .img-logo{
   max-width: 3.5rem;
   max-height: 3.5rem;
 }
+
