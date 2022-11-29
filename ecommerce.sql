@@ -170,9 +170,6 @@ CREATE TABLE `tproveedores` (
   `Estado` tinyint(1) DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tproveedores`
---
 
 INSERT INTO `tproveedores` (`IdProveedor`, `Nombre`, `Ciudad`, `Correo`, `Telefono`, `Descripcion`, `Estado`) VALUES
 (1, 'Miguel', 'El Alto', 'carloms@gmail.com', '68512458', 'Proveedor del alto xd', 1),
@@ -256,223 +253,116 @@ CREATE TABLE `tventas` (
   `Total` int DEFAULT NULL
 );
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tcategorias`
---
 ALTER TABLE `tcategorias`
   ADD PRIMARY KEY (`IdCategoria`);
 
---
--- Indices de la tabla `tcolores`
---
 ALTER TABLE `tcolores`
   ADD PRIMARY KEY (`IdColor`);
 
---
--- Indices de la tabla `tcompra`
---
 ALTER TABLE `tcompra`
   ADD PRIMARY KEY (`IdCompra`),
   ADD KEY `IdProveedor` (`IdProveedor`),
   ADD KEY `IdUsuario` (`IdUsuario`),
   ADD KEY `IdMaterialPr` (`IdMaterialPr`);
 
---
--- Indices de la tabla `tcontrato`
---
 ALTER TABLE `tcontrato`
   ADD PRIMARY KEY (`IdContrato`),
   ADD KEY `IdCliente` (`IdCliente`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
---
--- Indices de la tabla `tdetalleventas`
---
 ALTER TABLE `tdetalleventas`
   ADD PRIMARY KEY (`IdDetalleVenta`),
   ADD KEY `IdVenta` (`IdVenta`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tmaterialpr`
---
 ALTER TABLE `tmaterialpr`
   ADD PRIMARY KEY (`IdMaterialPr`);
 
---
--- Indices de la tabla `tmodulos`
---
 ALTER TABLE `tmodulos`
   ADD PRIMARY KEY (`IdModulo`);
 
---
--- Indices de la tabla `tofertas`
---
 ALTER TABLE `tofertas`
   ADD PRIMARY KEY (`IdOferta`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tpermisos`
---
 ALTER TABLE `tpermisos`
   ADD PRIMARY KEY (`IdPermisos`),
   ADD KEY `IdModulo` (`IdModulo`),
   ADD KEY `IdRol` (`IdRol`);
 
---
--- Indices de la tabla `tproductocolores`
---
 ALTER TABLE `tproductocolores`
   ADD PRIMARY KEY (`IdPColor`);
 
---
--- Indices de la tabla `tproductos`
---
 ALTER TABLE `tproductos`
   ADD PRIMARY KEY (`IdProducto`),
   ADD KEY `IdCategoria` (`IdCategoria`),
   ADD KEY `IdOfertas` (`IdOfertas`);
 
---
--- Indices de la tabla `tproveedores`
---
 ALTER TABLE `tproveedores`
   ADD PRIMARY KEY (`IdProveedor`);
 
---
--- Indices de la tabla `troles`
---
 ALTER TABLE `troles`
   ADD PRIMARY KEY (`IdRoles`);
 
---
--- Indices de la tabla `ttallas`
---
 ALTER TABLE `ttallas`
   ADD PRIMARY KEY (`IdTalla`);
 
---
--- Indices de la tabla `ttallasprecio`
---
 ALTER TABLE `ttallasprecio`
   ADD PRIMARY KEY (`IdPrecioTalla`),
   ADD KEY `IdTalla` (`IdTalla`),
   ADD KEY `IdProducto` (`IdProducto`);
 
---
--- Indices de la tabla `tusuarios`
---
 ALTER TABLE `tusuarios`
   ADD PRIMARY KEY (`IdUsuario`),
   ADD KEY `IdRoles` (`IdRoles`);
 
---
--- Indices de la tabla `tventas`
---
 ALTER TABLE `tventas`
   ADD PRIMARY KEY (`IdVenta`),
   ADD KEY `IdUsuario` (`IdUsuario`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tcategorias`
---
 ALTER TABLE `tcategorias`
   MODIFY `IdCategoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT de la tabla `tcolores`
---
 ALTER TABLE `tcolores`
   MODIFY `IdColor` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tcompra`
---
 ALTER TABLE `tcompra`
   MODIFY `IdCompra` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `tcontrato`
---
 ALTER TABLE `tcontrato`
   MODIFY `IdContrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- AUTO_INCREMENT de la tabla `tmaterialpr`
---
 ALTER TABLE `tmaterialpr`
   MODIFY `IdMaterialPr` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT de la tabla `tmodulos`
---
 ALTER TABLE `tmodulos`
   MODIFY `IdModulo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
---
--- AUTO_INCREMENT de la tabla `tofertas`
---
+
 ALTER TABLE `tofertas`
   MODIFY `IdOferta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
---
--- AUTO_INCREMENT de la tabla `tpermisos`
---
 ALTER TABLE `tpermisos`
   MODIFY `IdPermisos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 
---
--- AUTO_INCREMENT de la tabla `tproductocolores`
---
 ALTER TABLE `tproductocolores`
   MODIFY `IdPColor` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `tproductos`
---
 ALTER TABLE `tproductos`
   MODIFY `IdProducto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
---
--- AUTO_INCREMENT de la tabla `tproveedores`
---
 ALTER TABLE `tproveedores`
   MODIFY `IdProveedor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `troles`
---
 ALTER TABLE `troles`
   MODIFY `IdRoles` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT de la tabla `ttallas`
---
+
 ALTER TABLE `ttallas`
   MODIFY `IdTalla` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `ttallasprecio`
---
 ALTER TABLE `ttallasprecio`
   MODIFY `IdPrecioTalla` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
--- AUTO_INCREMENT de la tabla `tusuarios`
---
 ALTER TABLE `tusuarios`
   MODIFY `IdUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
