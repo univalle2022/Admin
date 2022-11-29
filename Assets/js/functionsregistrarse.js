@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var obdata = JSON.parse(request.responseText);
                 if (obdata.status) {
                     formusuarios.reset();
+                    window.location = baseurl + "/dashboard";
                     swal("", obdata.msg, "success");
                 } else {
                     swal("Error", obdata.msg, "error");
