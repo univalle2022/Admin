@@ -3,15 +3,15 @@
 class RegistrarseModel extends Mysql
 {
     public $intidusuario;
-    public $intidrol;
+    public $intci;
     public $strnombre;
     public $strapellido;
     public $strcorreo;
+    public $strdireccion;
+    public $inttelefono;
     public $strcontrasenia;
     public $intstatus;
-    public $inttelefono;
-    public $intci;
-    public $strdireccion;
+    public $intidrol;
     public $intnit;
     public $strnombretr;
 
@@ -20,15 +20,7 @@ class RegistrarseModel extends Mysql
         parent::__construct();
     }
 
-    public function insertcliente(
-        string $ci,
-        string $nombre,
-        string $apellido,
-        string $email,
-        string $direccion,
-        int $telefono,
-        string $password
-    ) {
+    public function registrarCliente(int $ci,string $nombre,string $apellido,string $email,string $direccion,int $telefono,string $password) {
         $return = 0;
         $this->intci = $ci;
         $this->strnombre = $nombre;
@@ -40,12 +32,11 @@ class RegistrarseModel extends Mysql
         $this->intstatus = 1;
         $this->intidrol = 2;
 
-        $sql = "SELECT * FROM tusuarios WHERE Correo = '{$this->strcorreo}' or ci = '{$this->strintcici}' ";
+        $sql = "SELECT * FROM tusuarios WHERE Correo = '{$this->strcorreo}' or ci = '{$this->intci}' ";
         $request = $this->selectall($sql);
 
         if (empty($request)) {
-            $query  = "INSERT INTO tusuarios(IdRoles,ci,Nit,Nombre,NombreFiscal,Apellido,Telefono,Correo,Direccion,Contrasenia,Estado, Token)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            $query  = "INSERT INTO tusuarios(IdRoles,ci,Nit,Nombre,NombreFiscal,Apellido,Telefono,Correo,Direccion,Contrasenia,Estado, Token) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             $arrdata = array(
                 $this->intidrol,
                 $this->intci,

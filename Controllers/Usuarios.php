@@ -65,20 +65,13 @@ class Usuarios extends Controllers
             if (empty($_POST['txtrol']) ||  empty($_POST['txtnombre']) ||  empty($_POST['txtapellido']) ||  empty($_POST['txtcorreo'])) {
                 $arrresponse = array('status' => false, 'msg' => 'Datos Incorrectos');
             } else {
-
                 $intidusuario = intval($_POST['idusuario']);
                 $intidrol = intval($_POST['txtrol']);
                 $strnombre = strclean($_POST['txtnombre']);
                 $strapellido = strclean($_POST['txtapellido']);
                 $strcorreo = strclean($_POST['txtcorreo']);
-
                 $strcontrasenia = $_POST['txtcontrasenia'];
-
                 $intstatus = intval($_POST['liststatus']);
-
-
-
-
 
                 if ($intidusuario == 0) {
                     $requestusuario = $this->model->insertusuario($intidrol, $strnombre, $strapellido, $strcorreo, $strcontrasenia, $intstatus);
@@ -88,9 +81,6 @@ class Usuarios extends Controllers
                     $requestusuario = $this->model->updateusuario($intidusuario, $intidrol, $strnombre, $strapellido, $strcorreo, $strcontrasenia, $intstatus);
                     $option = 2;
                 }
-
-
-
 
                 if ($requestusuario > 0) {
 

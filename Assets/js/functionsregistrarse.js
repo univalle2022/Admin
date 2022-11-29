@@ -13,16 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
         var strcontrasenia = document.querySelector("#txtcontrasenia").value;
 
         if (
-            strnombre == '' || 
-            strdireccion == '' || 
-            inttelefono == '' || 
-            intci == '' || 
-            strapellido == '' || 
-            strcorreo == '' ||  
+            strnombre == '' ||
+            strdireccion == '' ||
+            inttelefono == '' ||
+            intci == '' ||
+            strapellido == '' ||
+            strcorreo == '' ||
             strcontrasenia == '') {
             swal("Atención", "Los campos con (*) son obligatorios.", "error");
             return false;
         }
+
+        console.log(strnombre);
+        console.log(strdireccion);
+        console.log(inttelefono);
+        console.log(intci);
+        console.log(strapellido);
+        console.log(strcorreo);
+        console.log(strcontrasenia);
+
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = baseurl + '/Registrarse/setregistrarse';
         var formdata = new FormData(formusuarios);
