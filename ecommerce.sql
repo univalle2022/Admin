@@ -93,9 +93,6 @@ CREATE TABLE `tofertas` (
   `Estado` tinyint DEFAULT NULL
 );
 
---
--- Volcado de datos para la tabla `tofertas`
---
 
 INSERT INTO `tofertas` (`IdOferta`, `IdProducto`, `Porcentaje`, `FechaInicio`, `FechaFinal`, `Estado`) VALUES
 (14, 36, 10, '2022-11-27', '2022-11-30', 1);

@@ -33,14 +33,13 @@ class OfertasModel extends Mysql
         $request = $this->select($sql);
         return $request;
     }
+    
     public function selectproductos()
     {
-
         $sql = "SELECT * FROM tproductos WHERE Estado != 0";
         $request = $this->selectall($sql);
         return $request;
     }
-
 
     public function insertofertas($idproducto,  $porcentaje, $fechaini_r, $fechafin_r)
     {
@@ -66,41 +65,25 @@ class OfertasModel extends Mysql
 
     public function updateofertas($idofertas, $producto,  $porcentaje, $fechaini_r, $fechafin_r, $status)
     {
-
         $this->intidofertas = $idofertas;
         $this->intidproducto = $producto;
         $this->intporcentaje = $porcentaje;
         $this->strfechaini = $fechaini_r;
         $this->strfechafin = $fechafin_r;
         $this->intstatus = $status;
-
-        /*$sql= "SELECT * FROM tofertas WHERE IdProducto='$this->intidproducto' AND IdOferta != $this->intidofertas";
-            $requestupdate = $this->selectall($sql);
-            
-            if(!empty($requestupdate)){
-                
-            }else{
-                $return=-1;
-            }*/
-
         $queryupdate = "UPDATE tofertas SET IdProducto=?, Porcentaje=?, FechaInicio=?, FechaFinal=?, Estado=? WHERE IdOferta=$this->intidofertas";
         $arrdata = array($this->intidproducto, $this->intporcentaje, $this->strfechaini, $this->strfechafin, $this->intstatus);
         $requestupdate = $this->update($queryupdate, $arrdata);
         $return = $requestupdate;
-
         return $return;
     }
 
     public function deleteofertas(int $idofertas_r)
     {
-
         $this->intidofertas = $idofertas_r;
-
-        // $querydelete = "UPDATE tofertas SET Estado=? WHERE IdOferta  = $this->intidofertas";
         $querydelete = "DELETE FROM tofertas tof WHERE tof.IdOferta = $this->intidofertas";
         $arrdata = array(0);
         $requestdelete = $this->update($querydelete, $arrdata);
-
         if ($requestdelete) {
             $requestdelete = 'ok';
             $return = $requestdelete;
@@ -108,7 +91,6 @@ class OfertasModel extends Mysql
             $request = 'error';
             $return = $request;
         }
-
         return $return;
     }
 }
