@@ -24,14 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return false;
         }
 
-        console.log(strnombre);
-        console.log(strdireccion);
-        console.log(inttelefono);
-        console.log(intci);
-        console.log(strapellido);
-        console.log(strcorreo);
-        console.log(strcontrasenia);
-
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = baseurl + '/Registrarse/setregistrarse';
         var formdata = new FormData(formusuarios);
