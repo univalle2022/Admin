@@ -27,7 +27,6 @@ class RegistrarseModel extends Mysql
         string $email,
         string $direccion,
         int $telefono,
-        int $nit,
         string $password
     ) {
         $return = 0;
@@ -37,13 +36,11 @@ class RegistrarseModel extends Mysql
         $this->strcorreo = $email;
         $this->strdireccion = $direccion;
         $this->inttelefono = $telefono;
-        $this->intnit = $nit;
         $this->strcontrasenia = $password;
         $this->intstatus = 1;
         $this->intidrol = 2;
 
-        $sql = "SELECT * FROM tusuarios 
-                    WHERE Correo = '{$this->strcorreo}' or ci = '{$this->strintcici}' ";
+        $sql = "SELECT * FROM tusuarios WHERE Correo = '{$this->strcorreo}' or ci = '{$this->strintcici}' ";
         $request = $this->selectall($sql);
 
         if (empty($request)) {
@@ -52,9 +49,9 @@ class RegistrarseModel extends Mysql
             $arrdata = array(
                 $this->intidrol,
                 $this->intci,
-                $this->intnit,
+                $this->intci,
                 $this->strnombre,
-                null,
+                $this->strapellido,
                 $this->strapellido,
                 $this->inttelefono,
                 $this->strcorreo,

@@ -4,14 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     formusuarios.onsubmit = function (e) {
         e.preventDefault();
-        var intci = document.querySelector("#txtci").value;
         var strnombre = document.querySelector("#txtnombre").value;
         var strdireccion = document.querySelector("#txtapellido").value;
+        var inttelefono = document.querySelector("#txttelefono").value;
+        var intci = document.querySelector("#txtci").value;
         var strapellido = document.querySelector("#txtdireccion").value;
         var strcorreo = document.querySelector("#txtcorreo").value;
         var strcontrasenia = document.querySelector("#txtcontrasenia").value;
 
-        if (strnombre == '' || strapellido == '' || strcorreo == '' || strdireccion == '' || intci == '' || strcontrasenia == '') {
+        if (
+            strnombre == '' || 
+            strdireccion == '' || 
+            inttelefono == '' || 
+            intci == '' || 
+            strapellido == '' || 
+            strcorreo == '' ||  
+            strcontrasenia == '') {
             swal("Atención", "Los campos con (*) son obligatorios.", "error");
             return false;
         }

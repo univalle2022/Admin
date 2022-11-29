@@ -8,7 +8,7 @@
     const DB_HOST = "localhost";
     const DB_NAME = "ecommerce";
     const DB_USER = "root";
-    const DB_PASSWORD = "root";
+    const DB_PASSWORD = "";
     const DB_CHARSET = "utf8";
 
     const NOMBRE_REMITENTE = "Tienda de Ropa Romeo y Julieta";

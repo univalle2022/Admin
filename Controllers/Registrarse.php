@@ -23,16 +23,23 @@ class Registrarse extends Controllers
             if (empty($_POST['txtnombre']) || empty($_POST['txtapellido']) || empty($_POST['txtcorreo'])) {
                 $arrresponse = array("status" => false, "msg" => 'Datos incorrectos.');
             } else {
-                $strci = strclean($_POST['txtci']);
                 $strnombre = ucwords(strclean($_POST['txtnombre']));
                 $strapellido = ucwords(strclean($_POST['txtapellido']));
-                $strcorreo = strtolower(strclean($_POST['txtcorreo']));
-                $strdireccion = strclean($_POST['txtdireccion']);
                 $inttelefono = intval(strclean($_POST['txttelefono']));
-                $intnit = intval(strclean($_POST['txtnit']));
+                $strci = strclean($_POST['txtci']);
+                $strdireccion = strclean($_POST['txtdireccion']);
+                $strcorreo = strtolower(strclean($_POST['txtcorreo']));
                 $strpassword =  empty($_POST['txtcontrasenia']) ? passgenerator() : $_POST['txtcontrasenia'];
                 $strpasswordencript = hash("SHA256", $strpassword);
-                $requestusuario = $this->model->insertcliente($strci, $strnombre, $strapellido, $strcorreo, $strdireccion, $inttelefono, $intnit, $strpasswordencript);
+                
+                $requestusuario = $this->model->insertcliente(
+                    $strci, 
+                    $strnombre, 
+                    $strapellido, 
+                    $strcorreo, 
+                    $strdireccion, 
+                    $inttelefono,  
+                    $strpasswordencript);
 
                 if ($requestusuario > 0) {
                     $arrresponse = array('status' => true, 'msg' => 'Datos Guardados Correctamente');
