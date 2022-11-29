@@ -59,7 +59,7 @@ class RegistrarseModel extends Mysql
                 $this->inttelefono,
                 $this->strcorreo,
                 $this->strdireccion,
-                $this->strpassword,
+                $this->strcontrasenia,
                 $this->intstatus,
                 null
             );
