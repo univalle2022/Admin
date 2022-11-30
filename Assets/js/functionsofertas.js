@@ -1,4 +1,5 @@
 var tableofertas;
+var objdata = '';
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "iDisplayLength": 10,
         "order": [[0, "desc"]]
     });
-    
+
     var formofertas = document.querySelector("#formofertas");
 
     formofertas.onsubmit = function (e) {
@@ -52,9 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
         (intidproducto === '') ? _remove(validateProducto, 'El campo producto es obligatorio') : _add(validateProducto);
         (intporcentaje === '') ? _remove(validatePorcentaje, 'El campo porcentaje es obligatorio') : _add(validatePorcentaje);
         (strfechaini === '') ? _remove(validateFechaIni, 'El campo fecha inicio es obligatorio') : _add(validateFechaIni);
-        (strfechafin === '') ? _remove(validateFechaFin, 'El campo fecha fin es obligatorio') : _add(validateFechaFin);
-        
-        if (intidproducto === '' || intporcentaje === '' || strfechaini === '' || strfechafin === '') {
+        if (strfechafin === '') {
+            _remove(validateFechaFin, 'El campo fecha fin es obligatorio')
+        } else if (strfechaini.valueOf() == strfechafin.valueOf()) {
+            _remove(validateFechaFin, 'La Fecha tiene que ser mayor a la fecha de hoy');
+        } else {
+            _add(validateFechaFin);
+        }
+        if (intidproducto === '' || intporcentaje === '' || strfechaini === '' || strfechafin === '' || (strfechaini.valueOf() == strfechafin.valueOf())) {
             return false;
         } else {
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -64,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
             request.send(formdata);
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    console.log(request.responseText);
                     var obdata = JSON.parse(request.responseText);
                     console.log(obdata);
                     if (obdata.status) {
@@ -82,6 +87,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = baseurl + '/Ofertas/getofertas';
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.status == 200) {
+            request.onload = function () {
+                objdata = JSON.parse(request.responseText);
+                allProductos();
+            }
+        }
+    }
+
 }, false);
 
 window.addEventListener('load', function () {
@@ -104,7 +123,7 @@ function _add(input) {
 
 function validateNumber(e) {
     const pattern = /^[0-9]$/;
-    return pattern.test(e.key )
+    return pattern.test(e.key)
 }
 
 function openmodal() {
@@ -158,7 +177,7 @@ function fnteditofertas() {
                         document.querySelector("#txtfechaini").value = objdata.data.FechaInicio;
                         document.querySelector("#txtfechafin").value = objdata.data.FechaFinal;
                         document.querySelector("#selected").classList.remove('d-none');
-                        
+
                         $('#txtproducto').selectpicker('render');
 
                         if (objdata.data.Estado == 1) {
@@ -226,4 +245,36 @@ function fntdelofertas() {
             });
         });
     });
+}
+
+function allProductos() {
+    const fecha = new Date();
+    for (var i = 0; i < objdata.length; i++) {
+        const f = moment(fecha).format('DD/MM/YYYY');
+        const ff = moment(objdata[i].FechaFinal).format('DD/MM/YYYY');
+        if (validarFechaEnRango(f, ff)) {
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = baseurl + '/Ofertas/setofertaEstado/' + objdata[i].IdOferta;
+            request.open("PUT", ajaxUrl, true);
+            request.send();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    // console.log(request.responseText);
+                    var objdata = JSON.parse(request.responseText);
+                    if (objdata.status) {
+                        tableofertas.ajax.reload(function () {
+
+                        });
+                    } else {
+                        swal("Error", objdata.msg, "error");
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validarFechaEnRango(fecha, fin) {
+    // return inicio.valueOf() <= fecha.valueOf() && fecha.valueOf() <= fin.valueOf();
+    return fin.valueOf() <= fecha.valueOf();
 }
