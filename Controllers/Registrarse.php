@@ -29,10 +29,17 @@ class Registrarse extends Controllers
                 $strcorreo = strtolower(strclean($_POST['txtcorreo']));
                 $strdireccion = strclean($_POST['txtdireccion']);
                 $inttelefono = intval(strclean($_POST['txttelefono']));
-                $intnit = intval(strclean($_POST['txtnit']));
                 $strpassword =  empty($_POST['txtcontrasenia']) ? passgenerator() : $_POST['txtcontrasenia'];
                 $strpasswordencript = hash("SHA256", $strpassword);
-                $requestusuario = $this->model->insertcliente($strci, $strnombre, $strapellido, $strcorreo, $strdireccion, $inttelefono, $intnit, $strpasswordencript);
+                
+                $requestusuario = $this->model->registrarCliente(
+                    $strci, 
+                    $strnombre, 
+                    $strapellido, 
+                    $strcorreo, 
+                    $strdireccion, 
+                    $inttelefono,  
+                    $strpasswordencript);
 
                 if ($requestusuario > 0) {
                     $arrresponse = array('status' => true, 'msg' => 'Datos Guardados Correctamente');
@@ -44,7 +51,7 @@ class Registrarse extends Controllers
                         'password' => $strpassword,
                         'asunto' => 'Bienvenido a tu tienda en línea'
                     );
-                    sendEmail($datausuario, 'emailbienvenida');
+                    
                 } else {
                     if ($requestusuario == -1) {
                         $arrresponse = array('status' => false, 'msg' => '!Atencion! El usuario ya existe');
