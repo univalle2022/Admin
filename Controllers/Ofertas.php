@@ -12,7 +12,6 @@ class Ofertas extends Controllers
     }
     public function ofertas()
     {
-
         $data['page_id'] = 5;
         $data['page_tag'] = "Ofertas";
         $data['page_title'] = "Pagina Ofertas";
@@ -30,6 +29,9 @@ class Ofertas extends Controllers
             $btnedit = '';
             $btndelete = '';
             $script = '';
+
+            // $arrdata[$i]['FechaInicio'] = date("d-m-Y", strtotime($arrdata[$i]['FechaInicio']));
+            // $arrdata[$i]['FechaFinal'] = date("d-m-Y", strtotime($arrdata[$i]['FechaFinal']));
 
             if ($arrdata[$i]['Estado'] == 1) {
                 $arrdata[$i]['Estado'] = '<span class="badge badge-pill badge-success">Activo</span>';
@@ -141,6 +143,18 @@ class Ofertas extends Controllers
             }
             echo json_encode($arrresponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    public function setofertaEstado($idoferta)
+    {
+        $requestupdate = $this->model->updateofertaEstado($idoferta);
+        if ($requestupdate == 'ok') {
+            $arrresponse = array('status' => true, 'msg' => 'Datos Actualizados Correctamente' . $requestupdate);
+        } else {
+            $arrresponse = array('status' => true, 'msg' => 'No se elimino los datos' . $requestupdate);
+        }
+        echo json_encode($arrresponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

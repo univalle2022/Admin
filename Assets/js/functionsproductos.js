@@ -138,7 +138,6 @@ function fnteditproducto(){
                     var objdata=JSON.parse(request.responseText);
                     if(objdata.status){
 
-                        
                         document.querySelector("#idproducto").value=objdata.data.IdProducto;
                         document.querySelector("#txtnombre").value=objdata.data.Nombre;
                         document.querySelector("#txtcategoria").value=objdata.data.IdCategoria;

@@ -2,7 +2,6 @@
 
 class OfertasModel extends Mysql
 {
-
     public $intidofertas;
     public $intidproducto;
     public $intporcentaje;
@@ -12,7 +11,6 @@ class OfertasModel extends Mysql
 
     public function __construct()
     {
-
         parent::__construct();
     }
 
@@ -33,7 +31,7 @@ class OfertasModel extends Mysql
         $request = $this->select($sql);
         return $request;
     }
-    
+
     public function selectproductos()
     {
         $sql = "SELECT * FROM tproductos WHERE Estado != 0";
@@ -91,6 +89,17 @@ class OfertasModel extends Mysql
             $request = 'error';
             $return = $request;
         }
+        return $return;
+    }
+
+    public function updateofertaEstado($idoferta)
+    {
+        $this->intidofertas = $idoferta;
+        $this->intstatus = 2;
+        $queryupdate = "UPDATE tofertas SET Estado=? WHERE IdOferta=$this->intidofertas";
+        $arrdata = array($this->intstatus);
+        $requestupdate = $this->update($queryupdate, $arrdata);
+        $return = $requestupdate;
         return $return;
     }
 }
